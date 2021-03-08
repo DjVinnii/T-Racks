@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\HardwareController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,4 +20,15 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::group(['middleware' => 'auth'], function () {
+    Route::get('/dashboard', [App\Http\Controllers\HomeController::class, 'index'])->name('dashboard');
+
+    Route::get('/hardware/datatable', [App\Http\Controllers\HardwareController::class, 'datatable'])->name('hardware.datatable');
+
+    Route::resources([
+        'hardware' => HardwareController::class,
+    ]);
+});
+
+
+
