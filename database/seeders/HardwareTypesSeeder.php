@@ -20,6 +20,7 @@ class HardwareTypesSeeder extends Seeder
         DB::table('hardware_types')->insert(['name' => 'Router']);
         DB::table('hardware_types')->insert(['name' => 'Patch Panel']);
         DB::table('hardware_types')->insert(['name' => 'Cable Management']);
+        DB::table('hardware_types')->insert(['name' => 'PDU']);
     }
 }
 

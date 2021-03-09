@@ -2,26 +2,23 @@
 
 namespace App\Http\Controllers;
 
-use App\Forms\HardwareForm;
+use App\Forms\RackForm;
 use App\Models\Hardware;
+use App\Models\Rack;
 use Illuminate\Http\Request;
 use Kris\LaravelFormBuilder\FormBuilder;
-use Yajra\DataTables\Facades\DataTables;
+use Yajra\DataTables\DataTables;
 
-class HardwareController extends Controller
+class RackController extends Controller
 {
     /**
      * Returns the datatable of the resource.
      */
     public function datatable()
     {
-        $query = Hardware::query();
+        $query = Rack::query();
 
-        return DataTables::of($query)
-            ->editColumn('hardware_type', function(Hardware $hardware) {
-                return $hardware->HardwareType->name;
-            })
-            ->make(true);
+        return DataTables::of($query)->make(true);
     }
 
     /**
@@ -31,7 +28,7 @@ class HardwareController extends Controller
      */
     public function index()
     {
-        return view('hardware.index');
+        return view('rack.index');
     }
 
     /**
@@ -42,23 +39,23 @@ class HardwareController extends Controller
      */
     public function create(FormBuilder $formBuilder)
     {
-        $form = $formBuilder->create(HardwareForm::class, [
+        $form = $formBuilder->create(RackForm::class, [
            'method' => 'POST',
-           'url'    => route('hardware.store'),
+           'url'    => route('rack.store'),
         ]);
 
-        return view('hardware.create', compact('form'));
+        return view('rack.create', compact('form'));
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param FormBuilder $formBuilder
      * @return \Illuminate\Http\Response
      */
     public function store(FormBuilder $formBuilder)
     {
-        $form = $formBuilder->create(HardwareForm::class);
+        $form = $formBuilder->create(RackForm::class);
 
         if(!$form->isValid())
         {
@@ -67,50 +64,53 @@ class HardwareController extends Controller
 
         $attributes = $form->getFieldValues();
 
-        $hardware = Hardware::create($attributes);
+        $rack = Rack::create($attributes);
 
-        return redirect()->route('hardware.index')->with('success', __('app.hardware_successfully_created'));
+        return redirect()->route('rack.index')->with('success', __('app.rack_successfully_created'));
+
     }
 
     /**
      * Display the specified resource.
      *
-     * @param Hardware $hardware
+     * @param Rack $rack
      * @return \Illuminate\Http\Response
      */
-    public function show(Hardware $hardware)
+    public function show(Rack $rack)
     {
-        return view('hardware.show', compact('hardware'));
+        return view('rack.show', compact('rack'));
+
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param Hardware $hardware
+     * @param Rack $rack
      * @param FormBuilder $formBuilder
      * @return \Illuminate\Http\Response
      */
-    public function edit(Hardware $hardware, FormBuilder $formBuilder)
+    public function edit(Rack $rack, FormBuilder $formBuilder)
     {
-        $form = $formBuilder->create(HardwareForm::class, [
+        $form = $formBuilder->create(RackForm::class, [
             'method' => 'PUT',
-            'url'    => route('hardware.update', $hardware),
-            'model'  => $hardware,
+            'url'    => route('rack.update', $rack),
+            'model'  => $rack
         ]);
 
-        return view('hardware.edit', compact('form'));
+        return view('rack.edit', compact('form'));
+
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param FormBuilder $formBuilder
-     * @param Hardware $hardware
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(FormBuilder $formBuilder, Hardware $hardware)
+    public function update(FormBuilder $formBuilder, Rack $rack)
     {
-        $form = $formBuilder->create(HardwareForm::class);
+        $form = $formBuilder->create(RackForm::class);
 
         if(!$form->isValid())
         {
@@ -119,9 +119,9 @@ class HardwareController extends Controller
 
         $attributes = $form->getFieldValues();
 
-        $hardware->update($attributes);
+        $rack->update($attributes);
 
-        return redirect()->route('hardware.index')->with('success', __('app.hardware_successfully_updated'));
+        return redirect()->route('rack.index')->with('success', __('app.rack_successfully_updated'));
     }
 
     /**

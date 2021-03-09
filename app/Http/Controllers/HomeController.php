@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Hardware;
+use App\Models\Rack;
+use App\Models\RackUnit;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -24,8 +26,10 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $hardware_count = Hardware::count();
+        $hardware_count   = Hardware::count();
+        $rack_count       = Rack::count();
+        $rack_units_count = Rack::sum('height');
 
-        return view('dashboard', compact('hardware_count'));
+        return view('dashboard', compact('hardware_count', 'rack_count', 'rack_units_count'));
     }
 }

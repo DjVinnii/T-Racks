@@ -5,11 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Hardware extends Model
+class Rack extends Model
 {
     use HasFactory;
 
-    protected $table = 'hardware';
+    protected $table = 'racks';
 
     /**
      * The attributes that are mass assignable.
@@ -18,18 +18,8 @@ class Hardware extends Model
      */
     protected $fillable = [
         'name',
-        'hardware_type',
-        'label',
-        'asset_tag',
-
-//        todo Hardware Model (Vendor, type etc)
+        'height',
     ];
-
-
-    public function hardwareType()
-    {
-        return $this->belongsTo(HardwareType::class, 'hardware_type');
-    }
 
     public function rackUnits()
     {

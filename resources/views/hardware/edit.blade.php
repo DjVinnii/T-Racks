@@ -16,8 +16,20 @@
 <section class="content">
     <div class="container-fluid">
         <div class="row">
-            <div class="col-12">
+            <div class="col-8">
                 {!! form_start($form) !!}
+                {!! form_until($form, 'asset_tag') !!}
+            </div>
+            <div class="col-md-4">
+                {!! form_until($form, 'rack') !!}
+                TODO Rack unit selector
+                RACK
+                unit no
+                front, interior, back
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
                 {!! form_rest($form) !!}
                 {!! form_end($form) !!}
             </div>
