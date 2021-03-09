@@ -31,6 +31,10 @@ return [
     // Auth
     'login' => 'Login',
     'logout' => 'Logout',
+    'e-mail' => 'E-mail',
+    'password' => 'Password',
+    'remember_me' => 'Remember me',
+    'forgot_your_password' => 'Forgot your password',
 
     // Selects
     'select_hardware_type' => '=== Select Hardware Type ===',
