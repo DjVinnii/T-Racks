@@ -1,31 +1,13 @@
-<!doctype html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+@extends('layouts.auth')
 
-    <!-- CSRF Token -->
-    <meta name="csrf-token" content="{{ csrf_token() }}">
-
-    <title>{{ config('app.name', 'Laravel') }}</title>
-
-    <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}"></script>
-
-    <!-- Fonts -->
-    <link rel="dns-prefetch" href="//fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
-
-    <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-</head>
-<body class="hold-transition login-page">
+@section('content')
 <div class="login-box">
     <div class="card card-outline card-primary">
         <div class="card-header text-center">
             <h1>{{ config('app.name', 'Laravel') }}</h1>
         </div>
-        <div class="card-body">
+        <div class="card-body login-card-body">
+            <p class="login-box-msg">@lang('app.login')</p>
             <form method="POST" action="{{ route('login') }}">
                 @csrf
 
@@ -38,8 +20,8 @@
                     </div>
                     @error('email')
                     <span class="invalid-feedback" role="alert">
-                        <strong>{{ $message }}</strong>
-                    </span>
+                    <strong>{{ $message }}</strong>
+                </span>
                     @enderror
                 </div>
 
@@ -52,8 +34,8 @@
                     </div>
                     @error('password')
                     <span class="invalid-feedback" role="alert">
-                        <strong>{{ $message }}</strong>
-                    </span>
+                    <strong>{{ $message }}</strong>
+                </span>
                     @enderror
                 </div>
 
@@ -79,5 +61,4 @@
         </div>
     </div>
 </div>
-</body>
-</html>
+@endsection

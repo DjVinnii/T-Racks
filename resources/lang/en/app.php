@@ -33,8 +33,11 @@ return [
     'logout' => 'Logout',
     'e-mail' => 'E-mail',
     'password' => 'Password',
+    'confirm_password' => 'Confirm password',
     'remember_me' => 'Remember me',
     'forgot_your_password' => 'Forgot your password',
+    'reset_password' => 'Reset password',
+    'send_password_reset_link' => 'Send password reset link',
 
     // Selects
     'select_hardware_type' => '=== Select Hardware Type ===',
