@@ -28,7 +28,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/dashboard', [App\Http\Controllers\HomeController::class, 'index'])->name('dashboard');
 
     Route::get('/hardware/datatable', [App\Http\Controllers\HardwareController::class, 'datatable'])->name('hardware.datatable');
-    Route::get('/hardware_type/datatable', [App\Http\Controllers\HardwareController::class, 'datatable'])->name('hardware_type.datatable');
+    Route::get('/hardware_type/datatable', [App\Http\Controllers\HardwareTypeController::class, 'datatable'])->name('hardware_type.datatable');
     Route::get('/ipv4_network/datatable', [App\Http\Controllers\Ipv4NetworkController::class, 'datatable'])->name('ipv4_network.datatable');
     Route::get('/ipv6_network/datatable', [App\Http\Controllers\Ipv6NetworkController::class, 'datatable'])->name('ipv6_network.datatable');
     Route::get('/rack/datatable', [App\Http\Controllers\RackController::class, 'datatable'])->name('rack.datatable');
