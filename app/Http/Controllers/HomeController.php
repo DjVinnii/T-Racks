@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Hardware;
 use App\Models\Ipv4Network;
+use App\Models\Ipv6Network;
 use App\Models\Rack;
 use Illuminate\Http\Request;
 
@@ -30,7 +31,8 @@ class HomeController extends Controller
         $rack_count       = Rack::count();
         $rack_units_count = Rack::sum('height');
         $ipv4_network_count = Ipv4Network::count();
+        $ipv6_network_count = Ipv6Network::count();
 
-        return view('dashboard', compact('hardware_count', 'rack_count', 'rack_units_count', 'ipv4_network_count'));
+        return view('dashboard', compact('hardware_count', 'rack_count', 'rack_units_count', 'ipv4_network_count', 'ipv6_network_count'));
     }
 }
