@@ -8,7 +8,7 @@
                 <h1 class="m-0">@lang('app.hardware_types')</h1>
             </div>
             <div class="col-sm-6 text-right">
-                <a href="{{ route('hardwareType.create') }}" class="btn btn-app">
+                <a href="{{ route('hardware_type.create') }}" class="btn btn-app">
                     <i class="fa fa-plus"></i>
                     @lang('app.create')
                 </a>
@@ -48,13 +48,13 @@
                 autoWidth: false,
                 processing: true,
                 serverSide: true,
-                ajax: '{!! route('hardwareType.datatable') !!}',
+                ajax: '{!! route('hardware_type.datatable') !!}',
                 columns : [
                     { data: 'name' , name: 'name' },
                     { data: function(e) {
                             let returnval = '';
-                            let view = '{{ route('hardwareType.show', -1) }}'.replace('-1', e.id);
-                            let edit = '{{ route('hardwareType.edit', -1) }}'.replace('-1', e.id);
+                            let view = '{{ route('hardware_type.show', -1) }}'.replace('-1', e.id);
+                            let edit = '{{ route('hardware_type.edit', -1) }}'.replace('-1', e.id);
                             let view_link = '<a href="'+view+'" class="btn btn-app" data-tooltip="@lang('app.show')"><i class="fas fa-eye"></i>@lang('app.show')</a>';
                             let edit_link = '<a href="'+edit+'" class="btn btn-app" data-tooltip="@lang('app.edit')"><i class="fas fa-pencil-alt"></i>@lang('app.edit')</a>';
                             returnval += view_link;

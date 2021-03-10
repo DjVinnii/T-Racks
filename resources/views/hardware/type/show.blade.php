@@ -8,7 +8,7 @@
                     <h1 class="m-0">@lang('app.hardware_type')</h1>
                 </div>
                 <div class="col-sm-6 text-right">
-                    <a href="{{ route('hardwareType.edit', $hardwareType) }}" class="btn btn-app">
+                    <a href="{{ route('hardware_type.edit', $hardwareType) }}" class="btn btn-app">
                         <i class="fa fa-edit"></i>
                         @lang('app.edit')
                     </a>

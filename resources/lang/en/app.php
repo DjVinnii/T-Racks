@@ -29,6 +29,9 @@ return [
     'usage' => 'Usage',
     'configuration' => 'Configuration',
     'hardware_types' => 'Hardware Types',
+    'ipv4_network' => 'IPv4 Network ',
+    'network' => 'Network ',
+    'mask' => 'Mask ',
 
     // Auth
     'login' => 'Login',
@@ -55,5 +58,7 @@ return [
     'hardware_type_successfully_updated' => 'Hardware type successfully updated',
     'rack_successfully_created'     => 'Rack successfully created',
     'rack_successfully_updated'     => 'Rack successfully updated',
+    'ipv4_network_successfully_created'     => 'IPv4 Network successfully created',
+    'ipv4_network_successfully_updated'     => 'IPv4 Network successfully updated',
 
 ];
