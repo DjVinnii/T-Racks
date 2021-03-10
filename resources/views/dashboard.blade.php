@@ -21,7 +21,7 @@
                         <span class="info-box-icon bg-purple elevation-1"><i class="fas fa-server"></i></span>
                         <div class="info-box-content">
                             <span class="info-box-text">@lang('app.hardware')</span>
-                            <span class="info-box-number">{{ $hardware_count }}</span>
+                            <span class="info-box-number">{{ $hardware_count }} @lang('app.objects')</span>
                         </div>
                     </div>
                 </div>
@@ -43,7 +43,7 @@
                         <span class="info-box-icon bg-purple elevation-1"><i class="fas fa-server"></i></span>
                         <div class="info-box-content">
                             <span class="info-box-text">@lang('app.ipv4')</span>
-                            <span class="info-box-number">5</span>
+                            <span class="info-box-number">{{ $ipv4_network_count }} @lang('app.networks')</span>
                         </div>
                     </div>
                 </div>

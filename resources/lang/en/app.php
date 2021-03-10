@@ -30,8 +30,11 @@ return [
     'configuration' => 'Configuration',
     'hardware_types' => 'Hardware Types',
     'ipv4_network' => 'IPv4 Network ',
+    'ipv6_network' => 'IPv6 Network ',
     'network' => 'Network ',
+    'networks' => 'Networks ',
     'mask' => 'Mask ',
+    'objects' => 'Objects ',
 
     // Auth
     'login' => 'Login',
@@ -60,5 +63,7 @@ return [
     'rack_successfully_updated'     => 'Rack successfully updated',
     'ipv4_network_successfully_created'     => 'IPv4 Network successfully created',
     'ipv4_network_successfully_updated'     => 'IPv4 Network successfully updated',
+    'ipv6_network_successfully_created'     => 'IPv6 Network successfully created',
+    'ipv6_network_successfully_updated'     => 'IPv6 Network successfully updated',
 
 ];
