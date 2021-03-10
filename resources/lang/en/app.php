@@ -27,6 +27,8 @@ return [
     'back' => 'Back',
     'unit_no' => 'Unit number',
     'usage' => 'Usage',
+    'configuration' => 'Configuration',
+    'hardware_types' => 'Hardware Types',
 
     // Auth
     'login' => 'Login',
@@ -49,6 +51,8 @@ return [
     'success' => 'Success!',
     'hardware_successfully_created' => 'Hardware successfully created',
     'hardware_successfully_updated' => 'Hardware successfully updated',
+    'hardware_type_successfully_created' => 'Hardware type successfully updated',
+    'hardware_type_successfully_updated' => 'Hardware type successfully updated',
     'rack_successfully_created'     => 'Rack successfully created',
     'rack_successfully_updated'     => 'Rack successfully updated',
 

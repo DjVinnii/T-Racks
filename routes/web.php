@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\HardwareController;
+use App\Http\Controllers\HardwareTypeController;
 use App\Http\Controllers\RackController;
 use Illuminate\Support\Facades\Route;
 
@@ -25,10 +26,12 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/dashboard', [App\Http\Controllers\HomeController::class, 'index'])->name('dashboard');
 
     Route::get('/hardware/datatable', [App\Http\Controllers\HardwareController::class, 'datatable'])->name('hardware.datatable');
+    Route::get('/hardwareType/datatable', [App\Http\Controllers\HardwareController::class, 'datatable'])->name('hardwareType.datatable');
     Route::get('/rack/datatable', [App\Http\Controllers\RackController::class, 'datatable'])->name('rack.datatable');
 
     Route::resources([
         'hardware' => HardwareController::class,
+        'hardwareType' => HardwareTypeController::class,
         'rack' => RackController::class,
     ]);
 });

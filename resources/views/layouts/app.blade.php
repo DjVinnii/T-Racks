@@ -110,6 +110,13 @@
                                 <p>@lang('app.ipv6')</p>
                             </a>
                         </li>
+                        <li class="nav-header">@lang('app.configuration')</li>
+                        <li class="nav-item">
+                            <a href="{{ route('hardwareType.index') }}" class="nav-link">
+                                <i class="nav-icon fas fa-server"></i>
+                                <p>@lang('app.hardware_types')</p>
+                            </a>
+                        </li>
                     </ul>
                 </nav>
             </div>
