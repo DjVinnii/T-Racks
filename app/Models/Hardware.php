@@ -35,4 +35,9 @@ class Hardware extends Model
     {
         return $this->hasMany(RackUnit::class);
     }
+
+    public function ports()
+    {
+        return $this->hasMany(Port::class);
+    }
 }

@@ -66,7 +66,7 @@ class HardwareTypeController extends Controller
 
         $hardwareType = HardwareType::create($attributes);
 
-        return redirect()->route('hardware.type.index')->with('success', __('app.hardware_type_successfully_created'));
+        return redirect()->route('hardware_type.index')->with('success', __('app.hardware_type_successfully_created'));
     }
 
     /**
@@ -118,7 +118,7 @@ class HardwareTypeController extends Controller
 
         $hardwareType->update($attributes);
 
-        return redirect()->route('hardware.type.index')->with('success', __('app.hardware_type_successfully_updated'));
+        return redirect()->route('hardware_type.index')->with('success', __('app.hardware_type_successfully_updated'));
     }
 
     /**

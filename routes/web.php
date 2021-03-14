@@ -4,6 +4,7 @@ use App\Http\Controllers\HardwareController;
 use App\Http\Controllers\HardwareTypeController;
 use App\Http\Controllers\Ipv4NetworkController;
 use App\Http\Controllers\Ipv6NetworkController;
+use App\Http\Controllers\PortController;
 use App\Http\Controllers\RackController;
 use Illuminate\Support\Facades\Route;
 
@@ -32,6 +33,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/ipv4_network/datatable', [App\Http\Controllers\Ipv4NetworkController::class, 'datatable'])->name('ipv4_network.datatable');
     Route::get('/ipv6_network/datatable', [App\Http\Controllers\Ipv6NetworkController::class, 'datatable'])->name('ipv6_network.datatable');
     Route::get('/rack/datatable', [App\Http\Controllers\RackController::class, 'datatable'])->name('rack.datatable');
+    Route::get('/port/datatable', [App\Http\Controllers\PortController::class, 'datatable'])->name('port.datatable');
 
     Route::resources([
         'hardware' => HardwareController::class,
@@ -39,6 +41,7 @@ Route::group(['middleware' => 'auth'], function () {
         'ipv4_network' => Ipv4NetworkController::class,
         'ipv6_network' => Ipv6NetworkController::class,
         'rack' => RackController::class,
+        'port' => PortController::class,
     ]);
 });
 

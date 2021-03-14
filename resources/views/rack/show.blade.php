@@ -47,51 +47,7 @@
                             <h3 class="card-title">@lang('app.rack_diagram')</h3>
                         </div>
                         <div class="card-body">
-                            <table class="table table-bordered">
-                                <thead>
-                                    <tr>
-                                        <th style="width: 10%;"></th>
-                                        <th style="width: 20%;">@lang('app.front')</th>
-                                        <th style="width: 50%;">@lang('app.interior')</th>
-                                        <th style="width: 20%;">@lang('app.back')</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @for($i = $rack->height; $i > 0; $i--)
-                                        <tr>
-                                            <th>{{ $i }}</th>
-
-                                            @php
-                                                $rack_unit = $rack->rackUnits->where('unit_no', $i)->first();
-                                            @endphp
-
-                                            @if($rack_unit)
-                                                @if($rack_unit->front == 1)
-                                                    <th>{{ $rack_unit->hardware->name }}</th>
-                                                @else
-                                                    <th></th>
-                                                @endif
-
-                                                @if($rack_unit->interior == 1)
-                                                    <th>{{ $rack_unit->hardware->name }}</th>
-                                                @else
-                                                    <th></th>
-                                                @endif
-
-                                                @if($rack_unit->back == 1)
-                                                    <th>{{ $rack_unit->hardware->name }}</th>
-                                                @else
-                                                    <th></th>
-                                                @endif
-                                            @else
-                                            <th></th>
-                                            <th></th>
-                                            <th></th>
-                                            @endif
-                                        </tr>
-                                    @endfor
-                                </tbody>
-                            </table>
+                            <x-rack-diagram :rack="$rack" />
                         </div>
                     </div>
                 </div>

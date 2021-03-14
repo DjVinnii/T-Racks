@@ -35,35 +35,40 @@ return [
     'networks' => 'Networks ',
     'mask' => 'Mask ',
     'objects' => 'Objects ',
+    'ports' => 'Ports ',
+    'mac_address' => 'MAC Address ',
 
     // Auth
-    'login' => 'Login',
-    'logout' => 'Logout',
-    'e-mail' => 'E-mail',
-    'password' => 'Password',
-    'confirm_password' => 'Confirm password',
-    'remember_me' => 'Remember me',
-    'forgot_your_password' => 'Forgot your password',
-    'reset_password' => 'Reset password',
+    'login'                    => 'Login',
+    'logout'                   => 'Logout',
+    'e-mail'                   => 'E-mail',
+    'password'                 => 'Password',
+    'confirm_password'         => 'Confirm password',
+    'remember_me'              => 'Remember me',
+    'forgot_your_password'     => 'Forgot your password',
+    'reset_password'           => 'Reset password',
     'send_password_reset_link' => 'Send password reset link',
 
     // Selects
     'select_hardware_type' => '=== Select Hardware Type ===',
-    'select_rack' => '=== Select Rack ===',
+    'select_rack'          => '=== Select Rack ===',
+    'select_hardware'      => '=== Select Hardware ===',
 
     // Errors
 
     // Succes
     'success' => 'Success!',
-    'hardware_successfully_created' => 'Hardware successfully created',
-    'hardware_successfully_updated' => 'Hardware successfully updated',
-    'hardware_type_successfully_created' => 'Hardware type successfully updated',
-    'hardware_type_successfully_updated' => 'Hardware type successfully updated',
-    'rack_successfully_created'     => 'Rack successfully created',
-    'rack_successfully_updated'     => 'Rack successfully updated',
+    'hardware_successfully_created'         => 'Hardware successfully created',
+    'hardware_successfully_updated'         => 'Hardware successfully updated',
+    'hardware_type_successfully_created'    => 'Hardware type successfully updated',
+    'hardware_type_successfully_updated'    => 'Hardware type successfully updated',
+    'rack_successfully_created'             => 'Rack successfully created',
+    'rack_successfully_updated'             => 'Rack successfully updated',
     'ipv4_network_successfully_created'     => 'IPv4 Network successfully created',
     'ipv4_network_successfully_updated'     => 'IPv4 Network successfully updated',
     'ipv6_network_successfully_created'     => 'IPv6 Network successfully created',
     'ipv6_network_successfully_updated'     => 'IPv6 Network successfully updated',
+    'port_successfully_created'             => 'Port  successfully created',
+    'port_successfully_updated'             => 'Port  successfully updated',
 
 ];
