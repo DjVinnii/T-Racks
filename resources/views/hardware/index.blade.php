@@ -34,6 +34,7 @@
                                     <th>@lang('app.hardware_type')</th>
                                     <th>@lang('app.label')</th>
                                     <th>@lang('app.asset_tag')</th>
+                                    <th>@lang('app.rack')</th>
                                     <th>@lang('app.actions')</th>
                                 </tr>
                                 </thead>
@@ -59,6 +60,7 @@
                 { data: 'hardware_type' , name: 'hardware_type' },
                 { data: 'label' , name: 'label' },
                 { data: 'asset_tag' , name: 'asset_tag' },
+                { data: 'rack' , name: 'rack' },
                 { data: function(e) {
                         let returnval = '';
                         let view = '{{ route('hardware.show', -1) }}'.replace('-1', e.id);

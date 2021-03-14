@@ -22,6 +22,9 @@ class HardwareController extends Controller
             ->editColumn('hardware_type', function(Hardware $hardware) {
                 return $hardware->HardwareType->name;
             })
+            ->addColumn('rack', function(Hardware $hardware){
+                return $hardware->rackUnits->first()->rack->name;
+            })
             ->make(true);
     }
 
