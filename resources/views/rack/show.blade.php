@@ -36,7 +36,7 @@
                                 <dd class="col-sm-8">{{ $rack->height }}</dd>
 
                                 <dt class="col-sm-4">@lang('app.usage')</dt>
-                                <dd class="col-sm-8">{{ $rack->rackUnits->count() }} / {{ $rack->height }} HE</dd>
+                                <dd class="col-sm-8">{{ $rack->rackUnits()->distinct('unit_no')->count() }} / {{ $rack->height }} HE</dd>
                             </dl>
                         </div>
                     </div>

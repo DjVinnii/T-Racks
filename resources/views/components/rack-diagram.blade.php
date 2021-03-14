@@ -1,3 +1,5 @@
+{{ App\Helpers\RackHelper::markAllSpans($rack) }}
+
 <table class="table table-bordered">
     <thead>
     <tr>
@@ -8,50 +10,32 @@
     </tr>
     </thead>
     <tbody>
-    
-    @for($i = $rack->height; $i > 0; $i--)
+
+    @for($i = $rack->height; $i > 0; $i--)  {{-- Loop Height --}}
         <tr>
             <th>{{ $i }}</th>
 
-{{--            TODO Fix multiple objects in rack unit--}}
-
             @php
-                $rack_unit = $rack->rackUnits->where('unit_no', $i)->first();
+                for ($locidx = 0; $locidx < 3; $locidx++) // Loop front, interior, back
+                {
+                    $rack_unit = $rack->rackUnits->where('unit_no', $i)->where('position', $locidx)->first();
+
+                    if(isset($rack_unit->skipped))
+                        continue;
+
+                    echo '<td class="text-center"';
+
+                    if (isset($rack_unit->colspan))
+                        echo ' colspan=' . $rack_unit->colspan;
+                    if (isset($rack_unit->rowspan))
+                        echo ' rowspan=' . $rack_unit->rowspan;
+
+                    echo '>';
+                    if (isset($rack_unit->hardware->name))
+                        echo '<a href="' .  route('hardware.show', $rack_unit->hardware)  .'">' . $rack_unit->hardware->name . '</a>';
+                    echo '</td>';
+                }
             @endphp
-
-            @if($rack_unit)
-                @if($rack_unit->front == 1 && $rack_unit->interior == 1 && $rack_unit->back == 1)
-                    <th colspan="3">{{ $rack_unit->hardware->name }}</th>
-                @elseif($rack_unit->front == 1 && $rack_unit->interior == 1)
-                    <th colspan="2">{{ $rack_unit->hardware->name }}</th>
-                    <th></th>
-                @elseif($rack_unit->interior == 1 && $rack_unit->back == 1)
-                    <th></th>
-                    <th colspan="2">{{ $rack_unit->hardware->name }}</th>
-                @else
-                    @if($rack_unit->front == 1)
-                        <th>{{ $rack_unit->hardware->name }}</th>
-                    @else
-                        <th></th>
-                    @endif
-
-                    @if($rack_unit->interior == 1)
-                        <th>{{ $rack_unit->hardware->name }}</th>
-                    @else
-                        <th></th>
-                    @endif
-
-                    @if($rack_unit->back == 1)
-                        <th>{{ $rack_unit->hardware->name }}</th>
-                    @else
-                        <th></th>
-                    @endif
-                @endif
-            @else
-                <th></th>
-                <th></th>
-                <th></th>
-            @endif
         </tr>
     @endfor
     </tbody>

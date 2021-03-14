@@ -20,9 +20,11 @@ class RackUnit extends Model
         'rack_id',
         'unit_no',
         'hardware_id',
-        'front',
-        'interior',
-        'back',
+        'position', // 1 = front, 2 = interior, 3 = back
+
+//        'front',
+//        'interior',
+//        'back',
     ];
 
     public function Rack()

@@ -18,9 +18,10 @@ class CreateRackUnitsTable extends Migration
             $table->unsignedBigInteger('rack_id');
             $table->unsignedTinyInteger('unit_no');
             $table->unsignedBigInteger('hardware_id');
-            $table->boolean('front');
-            $table->boolean('interior');
-            $table->boolean('back');
+            $table->unsignedTinyInteger('position');
+//            $table->boolean('front');
+//            $table->boolean('interior');
+//            $table->boolean('back');
             $table->timestamps();
 
             $table->foreign('rack_id')->references('id')->on('racks');

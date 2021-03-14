@@ -51,41 +51,6 @@
                             </dl>
                         </div>
                     </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card">
-                        <div class="card-header">
-                            <h3 class="card-title">@lang('app.rackspace_allocation')</h3>
-                        </div>
-                        <div class="card-body">
-                            <div class="row">
-                                @foreach($hardware->rackUnits as $rack_unit)
-                                    @if ($loop->first)
-                                        <dt class="col-sm-4">@lang('app.rack')</dt>
-                                        <dd class="col-sm-8">{{ $rack_unit->rack->name }}</dd>
-                                    @endif
-                                        <dt class="col-sm-4">@lang('app.unit_no')</dt>
-                                        <dd class="col-sm-8">{{ $rack_unit->unit_no }}</dd>
-
-                                        <dt class="col-sm-4">@lang('app.front')</dt>
-                                        <dd class="col-sm-8">{{ $rack_unit->front }}</dd>
-
-                                        <dt class="col-sm-4">@lang('app.interior')</dt>
-                                        <dd class="col-sm-8">{{ $rack_unit->interior }}</dd>
-
-                                        <dt class="col-sm-4">@lang('app.back')</dt>
-                                        <dd class="col-sm-8">{{ $rack_unit->back }}</dd>
-
-                                        <br />
-                                        <br />
-                                @endforeach
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-8">
                     <div class="card">
                         <div class="card-header">
                             <h3 class="card-title">@lang('app.ports')</h3>
@@ -101,6 +66,16 @@
                                 </div>
                                 <hr />
                             @endforeach
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">@lang('app.rackspace_allocation')</h3>
+                        </div>
+                        <div class="card-body">
+                            <x-rack-diagram :rack="$hardware->rackUnits->first()->Rack" />
                         </div>
                     </div>
                 </div>
