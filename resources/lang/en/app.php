@@ -16,6 +16,7 @@ return [
     'create' => 'Create',
     'save' => 'Save',
     'summary' => 'Summary',
+    'details' => 'Details',
     'created_at' => 'Created at',
     'updated_at' => 'Updated at',
     'height' => 'Height',
@@ -36,7 +37,8 @@ return [
     'mask' => 'Mask ',
     'objects' => 'Objects ',
     'ports' => 'Ports ',
-    'mac_address' => 'MAC Address ',
+    'mac_address' => 'MAC Address',
+    'broadcast_address' => 'Broadcast Address',
 
     // Auth
     'login'                    => 'Login',

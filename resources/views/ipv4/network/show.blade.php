@@ -33,10 +33,10 @@
                             <dd class="col-sm-8">{{ $ipv4Network->name }}</dd>
 
                             <dt class="col-sm-4">@lang('app.network')</dt>
-                            <dd class="col-sm-8">{{ $ipv4Network->network }}</dd>
+                            <dd class="col-sm-8">{{ $ipv4Network->network }}/{{ $ipv4Network->mask }}</dd>
 
-                            <dt class="col-sm-4">@lang('app.mask')</dt>
-                            <dd class="col-sm-8">{{ $ipv4Network->mask }}</dd>
+                            <dt class="col-sm-4">@lang('app.broadcast_address')</dt>
+                            <dd class="col-sm-8">{{ long2ip(ip2long($ipv4Network->network) + pow(2, (32 - $ipv4Network->mask)) - 1) }}</dd>
 
                             <dt class="col-sm-4">@lang('app.created_at')</dt>
                             <dd class="col-sm-8">{{ $ipv4Network->created_at }}</dd>
