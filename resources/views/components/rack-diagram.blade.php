@@ -1,6 +1,6 @@
 {{ App\Helpers\RackHelper::markAllSpans($rack) }}
 
-<table class="table table-bordered">
+<table class="table table-bordered table-valign-middle">
     <thead>
     <tr>
         <th style="width: 10%;"></th>

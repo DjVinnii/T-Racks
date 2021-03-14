@@ -56,16 +56,22 @@
                             <h3 class="card-title">@lang('app.ports')</h3>
                         </div>
                         <div class="card-body">
-                            @foreach($hardware->ports as $port)
-                                <div class="row">
-                                    <dt class="col-sm-4">@lang('app.name')</dt>
-                                    <dd class="col-sm-8">{{ $port->name }}</dd>
-
-                                    <dt class="col-sm-4">@lang('app.mac_address')</dt>
-                                    <dd class="col-sm-8">{{ $port->mac_address }}</dd>
-                                </div>
-                                <hr />
-                            @endforeach
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>@lang('app.name')</th>
+                                        <th>@lang('app.mac_address')</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach($hardware->ports as $port)
+                                        <tr>
+                                            <td>{{ $port->name }}</td>
+                                            <td>{{ $port->mac_address }}</td>
+                                        </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>
