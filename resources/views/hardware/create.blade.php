@@ -21,11 +21,7 @@
                 {!! form_until($form, 'asset_tag') !!}
             </div>
             <div class="col-md-4">
-{{--                {!! form_until($form, 'rack') !!}--}}
-                TODO Rack unit selector
-                RACK
-                unit no
-                front, interior, back
+                {!! form_until($form, 'back') !!}
             </div>
         </div>
         <div class="row">

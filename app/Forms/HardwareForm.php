@@ -11,12 +11,28 @@ class HardwareForm extends Form
 {
     public function buildForm()
     {
-//        $rack = null;
-//
-//        if($this->model != null)
-//        {
-//            $rack = $this->model->rackUnits->first()->rack_id;
-//        }
+        $rack_unit = null;
+        $rack_id   = null;
+        $unit_no   = null;
+        $front     = false;
+        $interior  = false;
+        $back      = false;
+
+        if($this->model != null)
+        {
+            $rack_unit = $this->model->rackUnits->first();
+            $rack_id   = $rack_unit->rack_id;
+            $unit_no   = $rack_unit->unit_no;
+
+            if(!$this->model->rackUnits->where('position', 0)->isEmpty())
+                $front = true;
+
+            if(!$this->model->rackUnits->where('position', 1)->isEmpty())
+                $interior = true;
+
+            if(!$this->model->rackUnits->where('position', 2)->isEmpty())
+                $back = true;
+        }
 
         $this
             ->add('name', 'text', [
@@ -35,12 +51,31 @@ class HardwareForm extends Form
             ->add('asset_tag', 'text', [
                 'label' => __('app.asset_tag'),
             ])
-//            ->add('rack', 'select', [
-//                'choices'     =>  Arr::pluck(Rack::all(), 'name', 'id'),
-//                'selected'       => $rack,
-//                'empty_value' => __('app.select_rack'),
-//                'label'       => __('app.rack'),
-//            ])
+            ->add('rack_id', 'select', [
+                'choices'     =>  Arr::pluck(Rack::all(), 'name', 'id'),
+                'selected'    => $rack_id,
+                'empty_value' => __('app.select_rack'),
+                'label'       => __('app.rack'),
+            ])
+            ->add('unit_no', 'number', [
+                'value' => $unit_no,
+                'label' => __('app.unit_no'),
+            ])
+            ->add('front', 'checkbox', [
+                'value' => 1,
+                'checked' => $front,
+                'label' => __('app.front'),
+            ])
+            ->add('interior', 'checkbox', [
+                'value' => 1,
+                'checked' => $interior,
+                'label' => __('app.interior'),
+            ])
+            ->add('back', 'checkbox', [
+                'value' => 1,
+                'checked' => $back,
+                'label' => __('app.back'),
+            ])
             ->add('submit', 'submit', [
                 'label' => __('app.save'),
             ]);

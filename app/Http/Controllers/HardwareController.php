@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Forms\HardwareForm;
 use App\Models\Hardware;
+use App\Models\RackUnit;
 use Illuminate\Http\Request;
 use Kris\LaravelFormBuilder\FormBuilder;
 use Yajra\DataTables\Facades\DataTables;
@@ -69,6 +70,36 @@ class HardwareController extends Controller
 
         $hardware = Hardware::create($attributes);
 
+        if ($attributes['front'] == 1)
+        {
+            RackUnit::create([
+                'rack_id'     => $attributes['rack_id'],
+                'unit_no'     => $attributes['unit_no'],
+                'hardware_id' => $hardware->id,
+                'position'    => 0,
+            ]);
+        }
+
+        if ($attributes['interior'] == 1)
+        {
+            RackUnit::create([
+                'rack_id'     => $attributes['rack_id'],
+                'unit_no'     => $attributes['unit_no'],
+                'hardware_id' => $hardware->id,
+                'position'    => 1,
+            ]);
+        }
+
+        if ($attributes['back'] == 1)
+        {
+            RackUnit::create([
+                'rack_id'     => $attributes['rack_id'],
+                'unit_no'     => $attributes['unit_no'],
+                'hardware_id' => $hardware->id,
+                'position'    => 2,
+            ]);
+        }
+
         return redirect()->route('hardware.index')->with('success', __('app.hardware_successfully_created'));
     }
 
@@ -120,6 +151,41 @@ class HardwareController extends Controller
         $attributes = $form->getFieldValues();
 
         $hardware->update($attributes);
+
+        foreach($hardware->rackUnits as $rack_unit)
+        {
+            $rack_unit->delete();
+        }
+
+        if ($attributes['front'] == 1)
+        {
+            RackUnit::create([
+                'rack_id'     => $attributes['rack_id'],
+                'unit_no'     => $attributes['unit_no'],
+                'hardware_id' => $hardware->id,
+                'position'    => 0,
+            ]);
+        }
+
+        if ($attributes['interior'] == 1)
+        {
+            RackUnit::create([
+                'rack_id'     => $attributes['rack_id'],
+                'unit_no'     => $attributes['unit_no'],
+                'hardware_id' => $hardware->id,
+                'position'    => 1,
+            ]);
+        }
+
+        if ($attributes['back'] == 1)
+        {
+            RackUnit::create([
+                'rack_id'     => $attributes['rack_id'],
+                'unit_no'     => $attributes['unit_no'],
+                'hardware_id' => $hardware->id,
+                'position'    => 2,
+            ]);
+        }
 
         return redirect()->route('hardware.index')->with('success', __('app.hardware_successfully_updated'));
     }

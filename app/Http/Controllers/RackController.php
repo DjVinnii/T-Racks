@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Forms\RackForm;
 use App\Models\Hardware;
 use App\Models\Rack;
+use App\Models\RackUnit;
 use Illuminate\Http\Request;
 use Kris\LaravelFormBuilder\FormBuilder;
 use Yajra\DataTables\DataTables;
@@ -64,7 +65,6 @@ class RackController extends Controller
 
         $attributes = $form->getFieldValues();
 
-        $rack = Rack::create($attributes);
 
         return redirect()->route('rack.index')->with('success', __('app.rack_successfully_created'));
 
