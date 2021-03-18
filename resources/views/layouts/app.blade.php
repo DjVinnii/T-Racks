@@ -148,6 +148,22 @@
             </div>
             @endif
 
+            @if(session()->has('error'))
+                <div class="content-header">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="alert alert-danger alert-dismissible">
+                                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                                    <h5><i class="icon fas fa-check"></i>@lang('app.error')</h5>
+                                    {{ session()->get('error') }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            @endif
+
             @yield('content')
         </div>
     </div>

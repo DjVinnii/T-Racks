@@ -119,6 +119,14 @@ class RackController extends Controller
 
         $attributes = $form->getFieldValues();
 
+        // TODO check if new height < old height. Then check if no objects on that heigh
+
+
+        if($attributes['height'] < $rack->height && !RackUnit::where('rack_id', $rack->id)->where('unit_no', '>', $attributes['height'])->get()->isEmpty())
+        {
+            return redirect()->back()->withError(__('app.hardware_left_in_top_op_rack'))->withInput();
+        }
+
         $rack->update($attributes);
 
         return redirect()->route('rack.index')->with('success', __('app.rack_successfully_updated'));

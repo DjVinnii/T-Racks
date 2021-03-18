@@ -16,7 +16,7 @@
 <section class="content">
     <div class="container-fluid">
         <div class="row">
-            <div class="col-8">
+            <div class="col-12">
                 {!! form_start($form) !!}
                 {!! form_rest($form) !!}
                 {!! form_end($form) !!}

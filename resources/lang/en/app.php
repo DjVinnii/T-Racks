@@ -57,6 +57,8 @@ return [
     'select_hardware'      => '=== Select Hardware ===',
 
     // Errors
+    'error' => 'Error',
+    'hardware_left_in_top_op_rack' => 'There is still some hardware left in the top of the rack. Move the hardware first before shrinking the rack.',
 
     // Succes
     'success' => 'Success!',
