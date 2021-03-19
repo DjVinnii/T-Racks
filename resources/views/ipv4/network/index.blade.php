@@ -30,6 +30,7 @@
                                 <tr>
                                     <th>@lang('app.name')</th>
                                     <th>@lang('app.network')</th>
+                                    <th>@lang('app.capacity')</th>
                                     <th>@lang('app.actions')</th>
                                 </tr>
                                 </thead>
@@ -53,6 +54,7 @@
                 columns : [
                     { data: 'name' , name: 'name' },
                     { data: 'network' , name: 'network' },
+                    { data: 'capacity' , name: 'capacity' },
                     { data: function(e) {
                             let returnval = '';
                             let view = '{{ route('ipv4_network.show', -1) }}'.replace('-1', e.id);

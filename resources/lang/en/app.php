@@ -39,6 +39,8 @@ return [
     'ports' => 'Ports ',
     'mac_address' => 'MAC Address',
     'broadcast_address' => 'Broadcast Address',
+    'capacity' => 'Capacity',
+    'usable_ip_addresses' => 'Usable IP addresses',
 
     // Auth
     'login'                    => 'Login',

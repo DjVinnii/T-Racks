@@ -38,6 +38,12 @@
                             <dt class="col-sm-4">@lang('app.broadcast_address')</dt>
                             <dd class="col-sm-8">{{ long2ip(ip2long($ipv4Network->network) + pow(2, (32 - $ipv4Network->mask)) - 1) }}</dd>
 
+                            <dt class="col-sm-4">@lang('app.capacity')</dt>
+                            <dd class="col-sm-8">{{ pow(2, (32 - $ipv4Network->mask)) }}</dd>
+
+                            <dt class="col-sm-4">@lang('app.usable_ip_addresses')</dt>
+                            <dd class="col-sm-8">{{ pow(2, (32 - $ipv4Network->mask)) - 2 }}</dd>
+
                             <dt class="col-sm-4">@lang('app.created_at')</dt>
                             <dd class="col-sm-8">{{ $ipv4Network->created_at }}</dd>
 

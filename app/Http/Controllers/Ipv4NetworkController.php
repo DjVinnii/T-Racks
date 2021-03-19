@@ -21,6 +21,9 @@ class Ipv4NetworkController extends Controller
             ->editColumn('network', function (Ipv4Network $ipv4Network) {
                 return $ipv4Network->network . '/' . $ipv4Network->mask;
             })
+            ->addColumn('capacity', function (Ipv4Network $ipv4Network) {
+                return pow(2, (32 - $ipv4Network->mask));
+            })
             ->make(true);
     }
 
