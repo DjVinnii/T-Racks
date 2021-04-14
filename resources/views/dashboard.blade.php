@@ -17,20 +17,20 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-12 col-sm-6 col-md-3">
-                    <div class="info-box">
-                        <span class="info-box-icon bg-purple elevation-1"><i class="fas fa-server"></i></span>
-                        <div class="info-box-content">
-                            <span class="info-box-text">@lang('app.hardware')</span>
-                            <span class="info-box-number">{{ $hardware_count }} @lang('app.objects')</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-12 col-sm-6 col-md-3">
                     <div class="info-box mb-3">
                         <span class="info-box-icon bg-purple elevation-1"><i class="fas fa-server"></i></span>
                         <div class="info-box-content">
                             <span class="info-box-text">@lang('app.rackspace')</span>
                             <span class="info-box-number">{{ $rack_count }} Racks ({{ $rack_units_count }} HE)</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-sm-6 col-md-3">
+                    <div class="info-box">
+                        <span class="info-box-icon bg-purple elevation-1"><i class="fas fa-server"></i></span>
+                        <div class="info-box-content">
+                            <span class="info-box-text">@lang('app.hardware')</span>
+                            <span class="info-box-number">{{ $hardware_count }} @lang('app.objects')</span>
                         </div>
                     </div>
                 </div>

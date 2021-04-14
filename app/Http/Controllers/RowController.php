@@ -2,28 +2,27 @@
 
 namespace App\Http\Controllers;
 
-use App\Forms\RackForm;
-use App\Models\Rack;
-use App\Models\RackUnit;
+use App\Forms\RowForm;
+use App\Models\Row;
 use Illuminate\Http\Request;
 use Kris\LaravelFormBuilder\FormBuilder;
 use Yajra\DataTables\DataTables;
 
-class RackController extends Controller
+class RowController extends Controller
 {
     /**
      * Returns the datatable of the resource.
      */
     public function datatable()
     {
-        $query = Rack::query();
+        $query = Row::query();
 
         return DataTables::of($query)
-            ->editColumn('row_id', function (Rack $rack){
-                return $rack->row->name;
+            ->editColumn('location_id', function (Row $row){
+                return $row->location->name;
             })
-            ->addColumn('location', function (Rack $rack){
-                return $rack->row->location->name;
+            ->addColumn('racks', function (Row $row){
+                return $row->racks->count();
             })
             ->make(true);
     }
@@ -35,7 +34,7 @@ class RackController extends Controller
      */
     public function index()
     {
-        return view('rackspace.rack.index');
+        return view('rackspace.row.index');
     }
 
     /**
@@ -46,12 +45,12 @@ class RackController extends Controller
      */
     public function create(FormBuilder $formBuilder)
     {
-        $form = $formBuilder->create(RackForm::class, [
+        $form = $formBuilder->create(RowForm::class, [
            'method' => 'POST',
-           'url'    => route('rack.store'),
+           'url'    => route('row.store'),
         ]);
 
-        return view('rackspace.rack.create', compact('form'));
+        return view('rackspace.row.create', compact('form'));
     }
 
     /**
@@ -62,7 +61,7 @@ class RackController extends Controller
      */
     public function store(FormBuilder $formBuilder)
     {
-        $form = $formBuilder->create(RackForm::class);
+        $form = $formBuilder->create(RowForm::class);
 
         if(!$form->isValid())
         {
@@ -71,53 +70,52 @@ class RackController extends Controller
 
         $attributes = $form->getFieldValues();
 
-        Rack::create($attributes);
+        Row::create($attributes);
 
-        return redirect()->route('rack.index')->with('success', __('app.rack_successfully_created'));
+        return redirect()->route('row.index')->with('success', __('app.row_successfully_created'));
 
     }
 
     /**
      * Display the specified resource.
      *
-     * @param Rack $rack
+     * @param Row $row
      * @return \Illuminate\Http\Response
      */
-    public function show(Rack $rack)
+    public function show(Row $row)
     {
-        return view('rackspace.rack.show', compact('rack'));
-
+        return view('rackspace.row.show', compact('row'));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param Rack $rack
+     * @param Row $row
      * @param FormBuilder $formBuilder
      * @return \Illuminate\Http\Response
      */
-    public function edit(Rack $rack, FormBuilder $formBuilder)
+    public function edit(Row $row, FormBuilder $formBuilder)
     {
-        $form = $formBuilder->create(RackForm::class, [
+        $form = $formBuilder->create(RowForm::class, [
             'method' => 'PUT',
-            'url'    => route('rack.update', $rack),
-            'model'  => $rack
+            'url'    => route('row.update', $row),
+            'model'  => $row
         ]);
 
-        return view('rackspace.rack.edit', compact('form'));
+        return view('rackspace.row.edit', compact('form'));
 
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param FormBuilder $formBuilder
+     * @param Row $row
      * @return \Illuminate\Http\Response
      */
-    public function update(FormBuilder $formBuilder, Rack $rack)
+    public function update(FormBuilder $formBuilder, Row $row)
     {
-        $form = $formBuilder->create(RackForm::class);
+        $form = $formBuilder->create(RowForm::class);
 
         if(!$form->isValid())
         {
@@ -126,17 +124,9 @@ class RackController extends Controller
 
         $attributes = $form->getFieldValues();
 
-        // TODO check if new height < old height. Then check if no objects on that heigh
+        $row->update($attributes);
 
-
-        if($attributes['height'] < $rack->height && !RackUnit::where('rack_id', $rack->id)->where('unit_no', '>', $attributes['height'])->get()->isEmpty())
-        {
-            return redirect()->back()->withError(__('app.hardware_left_in_top_op_rack'))->withInput();
-        }
-
-        $rack->update($attributes);
-
-        return redirect()->route('rack.index')->with('success', __('app.rack_successfully_updated'));
+        return redirect()->route('row.index')->with('success', __('app.row_successfully_updated'));
     }
 
     /**

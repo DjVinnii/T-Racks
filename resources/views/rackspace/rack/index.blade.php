@@ -30,6 +30,8 @@
                                 <tr>
                                     <th>@lang('app.name')</th>
                                     <th>@lang('app.height')</th>
+                                    <th>@lang('app.location')</th>
+                                    <th>@lang('app.row')</th>
                                     <th>@lang('app.actions')</th>
                                 </tr>
                                 </thead>
@@ -53,6 +55,8 @@
             columns : [
                 { data: 'name' , name: 'name' },
                 { data: 'height' , name: 'height' },
+                { data: 'location' , name: 'location' },
+                { data: 'row_id' , name: 'row_id' },
                 { data: function(e) {
                         let returnval = '';
                         let view = '{{ route('rack.show', -1) }}'.replace('-1', e.id);

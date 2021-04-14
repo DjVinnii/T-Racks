@@ -27,10 +27,11 @@
 @endsection
 
 @section('script')
-{{--    TODO Select2 + Styling--}}
-{{--<script type="text/javascript">--}}
-{{--    $(function () {--}}
-{{--        $('#hardware_type').select2();--}}
-{{--    });--}}
-{{--</script>--}}
+<script type="text/javascript">
+    $(function () {
+        $('select').select2();
+    });
+</script>
 @endsection
+
+

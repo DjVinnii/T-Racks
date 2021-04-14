@@ -5,11 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Rack extends Model
+class Location extends Model
 {
     use HasFactory;
 
-    protected $table = 'racks';
+    protected $table = 'locations';
 
     /**
      * The attributes that are mass assignable.
@@ -18,17 +18,10 @@ class Rack extends Model
      */
     protected $fillable = [
         'name',
-        'height',
-        'row_id',
     ];
 
-    public function rackUnits()
+    public function rows()
     {
-        return $this->hasMany(RackUnit::class);
-    }
-
-    public function row()
-    {
-        return $this->belongsTo(Row::class);
+       return $this->hasMany(Row::class);
     }
 }

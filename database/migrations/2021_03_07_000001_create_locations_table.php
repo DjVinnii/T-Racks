@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateRacksTable extends Migration
+class CreateLocationsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,10 @@ class CreateRacksTable extends Migration
      */
     public function up()
     {
-        Schema::create('racks', function (Blueprint $table) {
+        Schema::create('locations', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->unsignedTinyInteger('height');
-            $table->unsignedBigInteger('row_id');
             $table->timestamps();
-
-            $table->foreign('row_id')->references('id')->on('rows');
         });
     }
 
@@ -31,6 +27,6 @@ class CreateRacksTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('racks');
+        Schema::dropIfExists('locations');
     }
 }

@@ -41,6 +41,11 @@ return [
     'broadcast_address' => 'Broadcast Address',
     'capacity' => 'Capacity',
     'usable_ip_addresses' => 'Usable IP addresses',
+    'locations' => 'Locations',
+    'location' => 'Location',
+    'racks' => 'Racks',
+    'rows' => 'Rows',
+    'row' => 'Row',
 
     // Auth
     'login'                    => 'Login',
@@ -57,6 +62,8 @@ return [
     'select_hardware_type' => '=== Select Hardware Type ===',
     'select_rack'          => '=== Select Rack ===',
     'select_hardware'      => '=== Select Hardware ===',
+    'select_location'      => '=== Select Location ===',
+    'select_row'           => '=== Select Row ===',
 
     // Errors
     'error' => 'Error',
@@ -74,7 +81,11 @@ return [
     'ipv4_network_successfully_updated'     => 'IPv4 Network successfully updated',
     'ipv6_network_successfully_created'     => 'IPv6 Network successfully created',
     'ipv6_network_successfully_updated'     => 'IPv6 Network successfully updated',
-    'port_successfully_created'             => 'Port  successfully created',
-    'port_successfully_updated'             => 'Port  successfully updated',
+    'port_successfully_created'             => 'Port successfully created',
+    'port_successfully_updated'             => 'Port successfully updated',
+    'location_successfully_created'         => 'Location successfully created',
+    'location_successfully_updated'         => 'Location successfully updated',
+    'row_successfully_created'              => 'Row successfully created',
+    'row_successfully_updated'              => 'Row successfully updated',
 
 ];

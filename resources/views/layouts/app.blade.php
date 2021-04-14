@@ -79,7 +79,7 @@
             @auth
             <div class="sidebar">
                 <nav class="mt-2">
-                    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                    <ul class="nav nav-pills nav-sidebar nav-child-indent flex-column" data-widget="treeview" role="menu" data-accordion="false">
                         <li class="nav-item">
                             <a href="{{ route('dashboard') }}" class="nav-link">
                                 <i class="nav-icon fas fa-server"></i>
@@ -92,12 +92,37 @@
                                 <p>@lang('app.hardware')</p>
                             </a>
                         </li>
+
                         <li class="nav-item">
-                            <a href="{{ route('rack.index') }}" class="nav-link">
+                            <a href="#" class="nav-link">
                                 <i class="nav-icon fas fa-server"></i>
                                 <p>@lang('app.rackspace')</p>
+                                <i class="fas fa-angle-left right"></i>
                             </a>
+
+                            <ul class="nav nav-treeview" style="display: none;">
+                                <li class="nav-item">
+                                    <a href="{{ route('location.index') }}" class="nav-link">
+                                        <i class="nav-icon fas fa-server"></i>
+                                        <p>@lang('app.locations')</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{ route('row.index') }}" class="nav-link">
+                                        <i class="nav-icon fas fa-server"></i>
+                                        <p>@lang('app.rows')</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{ route('rack.index') }}" class="nav-link">
+                                        <i class="nav-icon fas fa-server"></i>
+                                        <p>@lang('app.racks')</p>
+                                    </a>
+                                </li>
+                            </ul>
                         </li>
+
+
                         <li class="nav-item">
                             <a href="{{ route('ipv4_network.index') }}" class="nav-link">
                                 <i class="nav-icon fas fa-server"></i>
