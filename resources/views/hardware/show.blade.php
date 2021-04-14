@@ -61,6 +61,7 @@
                                     <tr>
                                         <th>@lang('app.name')</th>
                                         <th>@lang('app.mac_address')</th>
+                                        <th>@lang('app.remote_port')</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -68,6 +69,7 @@
                                         <tr>
                                             <td>{{ $port->name }}</td>
                                             <td>{{ $port->mac_address }}</td>
+                                            <td>@if($port->remotePort != null){{ $port->remotePort->hardware->name }} - {{ $port->remotePort->name }}@endif</td>
                                         </tr>
                                     @endforeach
                                 </tbody>

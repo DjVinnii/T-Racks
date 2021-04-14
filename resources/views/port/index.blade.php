@@ -31,6 +31,7 @@
                                     <th>@lang('app.name')</th>
                                     <th>@lang('app.hardware')</th>
                                     <th>@lang('app.mac_address')</th>
+                                    <th>@lang('app.remote_port')</th>
                                     <th>@lang('app.actions')</th>
                                 </tr>
                                 </thead>
@@ -55,6 +56,7 @@
                     { data: 'name' , name: 'name' },
                     { data: 'hardware_id' , name: 'hardware_id' },
                     { data: 'mac_address' , name: 'mac_address' },
+                    { data: 'remote_port' , name: 'remote_port' },
                     { data: function(e) {
                             let returnval = '';
                             let view = '{{ route('port.show', -1) }}'.replace('-1', e.id);

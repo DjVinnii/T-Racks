@@ -18,9 +18,11 @@ class CreatePortsTable extends Migration
             $table->unsignedBigInteger('hardware_id');
             $table->string('name');
             $table->string('mac_address')->nullable();
+            $table->unsignedBigInteger('remote_port')->nullable();
             $table->timestamps();
 
             $table->foreign('hardware_id')->references('id')->on('hardware');
+            $table->foreign('remote_port')->references('id')->on('ports');
         });
     }
 

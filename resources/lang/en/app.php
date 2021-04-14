@@ -30,6 +30,7 @@ return [
     'usage' => 'Usage',
     'configuration' => 'Configuration',
     'hardware_types' => 'Hardware Types',
+    'hardware_templates' => 'Hardware Templates',
     'ipv4_network' => 'IPv4 Network ',
     'ipv6_network' => 'IPv6 Network ',
     'network' => 'Network ',
@@ -46,6 +47,7 @@ return [
     'racks' => 'Racks',
     'rows' => 'Rows',
     'row' => 'Row',
+    'remote_port' => 'Remote Port',
 
     // Auth
     'login'                    => 'Login',
@@ -64,10 +66,12 @@ return [
     'select_hardware'      => '=== Select Hardware ===',
     'select_location'      => '=== Select Location ===',
     'select_row'           => '=== Select Row ===',
+    'select_remote_port'   => '=== Select Remote Port ===',
 
     // Errors
     'error' => 'Error',
     'hardware_left_in_top_op_rack' => 'There is still some hardware left in the top of the rack. Move the hardware first before shrinking the rack.',
+    'remote_port_already_in_use' => 'The selected remote port is already in use.',
 
     // Succes
     'success' => 'Success!',

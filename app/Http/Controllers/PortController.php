@@ -21,6 +21,17 @@ class PortController extends Controller
             ->editColumn('hardware_id', function (Port $port) {
                 return $port->hardware->name;
             })
+            ->editColumn('remote_port', function (Port $port) {
+                if ($port->remotePort != null)
+                {
+                    return $port->remotePort->hardware->name . ' - ' . $port->remotePort->name;
+                }
+                else
+                {
+                    return '';
+                }
+
+            })
             ->make(true);
     }
 
@@ -53,7 +64,7 @@ class PortController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param FormBuilder $formBuilder
      * @return \Illuminate\Http\Response
      */
     public function store(FormBuilder $formBuilder)
@@ -67,7 +78,19 @@ class PortController extends Controller
 
         $attributes = $form->getFieldValues();
 
+        if ($attributes['remote_port'] != null && Port::where('remote_port', '=', $attributes['remote_port'])->first() != null)
+        {
+            return redirect()->back()->withError(__('app.remote_port_already_in_use'))->withInput();
+        }
+
         $port = Port::create($attributes);
+
+        if($attributes['remote_port'] != null)
+        {
+            $remote_port = Port::find($attributes['remote_port']);
+            $remote_port->remote_port = $port->id;
+            $remote_port->save();
+        }
 
         return redirect()->route('port.index')->with('success', __('app.port_successfully_created'));
     }
@@ -118,6 +141,25 @@ class PortController extends Controller
         }
 
         $attributes = $form->getFieldValues();
+
+        if ($attributes['remote_port'] != null && Port::where('remote_port', '=', $attributes['remote_port'])->first() != null) {
+            return redirect()->back()->withError(__('app.remote_port_already_in_use'))->withInput();
+        }
+
+        if ($port->remote_port != null && $attributes['remote_port'] != $port->remote_port)
+        {
+            $old_remote_port = $port->remotePort;
+
+            $old_remote_port->remote_port = null;
+            $old_remote_port->save();
+        }
+
+        if ($attributes['remote_port'] != null)
+        {
+            $remote_port = Port::find($attributes['remote_port']);
+            $remote_port->remote_port = $port->id;
+            $remote_port->save();
+        }
 
         $port->update($attributes);
 

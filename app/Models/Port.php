@@ -20,10 +20,16 @@ class Port extends Model
         'hardware_id',
         'name',
         'mac_address',
+        'remote_port',
     ];
 
     public function hardware()
     {
         return $this->belongsTo(Hardware::class);
+    }
+
+    public function remotePort()
+    {
+        return $this->hasOne(Port::class, 'remote_port');
     }
 }

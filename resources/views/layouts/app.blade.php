@@ -82,14 +82,8 @@
                     <ul class="nav nav-pills nav-sidebar nav-child-indent flex-column" data-widget="treeview" role="menu" data-accordion="false">
                         <li class="nav-item">
                             <a href="{{ route('dashboard') }}" class="nav-link">
-                                <i class="nav-icon fas fa-server"></i>
+                                <i class="nav-icon fas fa-tachometer-alt"></i>
                                 <p>@lang('app.dashboard')</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{ route('hardware.index') }}" class="nav-link">
-                                <i class="nav-icon fas fa-server"></i>
-                                <p>@lang('app.hardware')</p>
                             </a>
                         </li>
 
@@ -122,25 +116,51 @@
                             </ul>
                         </li>
 
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon fas fa-ethernet"></i>
+                                <p>@lang('app.network')</p>
+                                <i class="fas fa-angle-left right"></i>
+                            </a>
+
+                            <ul class="nav nav-treeview" style="display: none;">
+                                <li class="nav-item">
+                                    <a href="{{ route('ipv4_network.index') }}" class="nav-link">
+                                        <i class="nav-icon fas fa-ethernet"></i>
+                                        <p>@lang('app.ipv4')</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{ route('ipv6_network.index') }}" class="nav-link">
+                                        <i class="nav-icon fas fa-ethernet"></i>
+                                        <p>@lang('app.ipv6')</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
 
                         <li class="nav-item">
-                            <a href="{{ route('ipv4_network.index') }}" class="nav-link">
+                            <a href="#" class="nav-link">
                                 <i class="nav-icon fas fa-server"></i>
-                                <p>@lang('app.ipv4')</p>
+                                <p>@lang('app.hardware')</p>
+                                <i class="fas fa-angle-left right"></i>
                             </a>
+                            <ul class="nav nav-treeview" style="display: none;">
+                                <li class="nav-item">
+                                    <a href="{{ route('hardware.index') }}" class="nav-link">
+                                        <i class="nav-icon fas fa-server"></i>
+                                        <p>@lang('app.hardware')</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{ route('port.index') }}" class="nav-link">
+                                        <i class="nav-icon fas fa-server"></i>
+                                        <p>@lang('app.ports')</p>
+                                    </a>
+                                </li>
+                            </ul>
                         </li>
-                        <li class="nav-item">
-                            <a href="{{ route('ipv6_network.index') }}" class="nav-link">
-                                <i class="nav-icon fas fa-server"></i>
-                                <p>@lang('app.ipv6')</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{ route('port.index') }}" class="nav-link">
-                                <i class="nav-icon fas fa-server"></i>
-                                <p>@lang('app.ports')</p>
-                            </a>
-                        </li>
+
                         <li class="nav-header">@lang('app.configuration')</li>
                         <li class="nav-item">
                             <a href="{{ route('hardware_type.index') }}" class="nav-link">
@@ -148,6 +168,12 @@
                                 <p>@lang('app.hardware_types')</p>
                             </a>
                         </li>
+{{--                        <li class="nav-item">--}}
+{{--                            <a href="#" class="nav-link">--}}
+{{--                                <i class="nav-icon fas fa-server"></i>--}}
+{{--                                <p>@lang('app.hardware_templates')</p>--}}
+{{--                            </a>--}}
+{{--                        </li>--}}
                     </ul>
                 </nav>
             </div>

@@ -38,6 +38,9 @@
                             <dt class="col-sm-4">@lang('app.mac_address')</dt>
                             <dd class="col-sm-8">{{ $port->mac_address }}</dd>
 
+                            <dt class="col-sm-4">@lang('app.remote_port')</dt>
+                            <dd class="col-sm-8">@if($port->remotePort != null){{ $port->remotePort->hardware->name }} - {{ $port->remotePort->name }}@endif</dd>
+
                             <dt class="col-sm-4">@lang('app.created_at')</dt>
                             <dd class="col-sm-8">{{ $port->created_at }}</dd>
 
