@@ -23,7 +23,7 @@ class HardwareController extends Controller
                 return $hardware->HardwareType->name;
             })
             ->addColumn('rack', function(Hardware $hardware){
-                return $hardware->rackUnits->first()->rack->name;
+                return $hardware->rackUnits->first()->rack->row->location->name . ' - ' . $hardware->rackUnits->first()->rack->row->name . ' - ' . $hardware->rackUnits->first()->rack->name;
             })
             ->make(true);
     }
