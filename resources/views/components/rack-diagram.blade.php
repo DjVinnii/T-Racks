@@ -23,7 +23,14 @@
                     if(isset($rack_unit->skipped))
                         continue;
 
-                    echo '<td class="text-center"';
+                    echo '<td class="text-center';
+
+                    if (isset($rack_unit->colspan) || isset($rack_unit->rowspan))
+                        echo ' bg-gray';
+                    else
+                        echo ' bg-light';
+
+                    echo '"';
 
                     if (isset($rack_unit->colspan))
                         echo ' colspan=' . $rack_unit->colspan;

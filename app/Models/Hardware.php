@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Hardware extends Model
 {
@@ -16,6 +18,7 @@ class Hardware extends Model
      *
      * @var array
      */
+
     protected $fillable = [
         'name',
         'hardware_type',
@@ -26,17 +29,17 @@ class Hardware extends Model
     ];
 
 
-    public function hardwareType()
+    public function hardwareType(): BelongsTo
     {
         return $this->belongsTo(HardwareType::class, 'hardware_type');
     }
 
-    public function rackUnits()
+    public function rackUnits(): HasMany
     {
         return $this->hasMany(RackUnit::class);
     }
 
-    public function ports()
+    public function ports(): HasMany
     {
         return $this->hasMany(Port::class);
     }

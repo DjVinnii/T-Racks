@@ -17,21 +17,30 @@ class HardwareForm extends Form
         $front     = false;
         $interior  = false;
         $back      = false;
+        $racks     = [];
 
         if($this->model != null)
         {
-            $rack_unit = $this->model->rackUnits->first();
-            $rack_id   = $rack_unit->rack_id;
-            $unit_no   = $rack_unit->unit_no;
+            if ($this->model->rackUnits->first() != null)
+            {
+                $rack_unit = $this->model->rackUnits->first();
+                $rack_id   = $rack_unit->rack_id;
+                $unit_no   = $rack_unit->unit_no;
+            }
 
-            if(!$this->model->rackUnits->where('position', 0)->isEmpty())
+            if (!$this->model->rackUnits->where('position', 0)->isEmpty())
                 $front = true;
 
-            if(!$this->model->rackUnits->where('position', 1)->isEmpty())
+            if (!$this->model->rackUnits->where('position', 1)->isEmpty())
                 $interior = true;
 
-            if(!$this->model->rackUnits->where('position', 2)->isEmpty())
+            if (!$this->model->rackUnits->where('position', 2)->isEmpty())
                 $back = true;
+        }
+
+        foreach (Rack::all() as $rack)
+        {
+            $racks[$rack->id] = $rack->row->location->name . ' - ' . $rack->row->name . ' - ' . $rack->name;
         }
 
         $this
@@ -52,7 +61,7 @@ class HardwareForm extends Form
                 'label' => __('app.asset_tag'),
             ])
             ->add('rack_id', 'select', [
-                'choices'     =>  Arr::pluck(Rack::all(), 'name', 'id'),
+                'choices'     => $racks,
                 'selected'    => $rack_id,
                 'empty_value' => __('app.select_rack'),
                 'label'       => __('app.rack'),

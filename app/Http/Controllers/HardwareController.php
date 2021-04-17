@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Forms\HardwareForm;
 use App\Models\Hardware;
 use App\Models\RackUnit;
+use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Kris\LaravelFormBuilder\FormBuilder;
 use Yajra\DataTables\Facades\DataTables;
@@ -23,6 +25,11 @@ class HardwareController extends Controller
                 return $hardware->HardwareType->name;
             })
             ->addColumn('rack', function(Hardware $hardware){
+                if ($hardware->rackUnits->first() == null)
+                {
+                    return '';
+                }
+
                 return $hardware->rackUnits->first()->rack->row->location->name . ' - ' . $hardware->rackUnits->first()->rack->row->name . ' - ' . $hardware->rackUnits->first()->rack->name;
             })
             ->make(true);
@@ -31,9 +38,9 @@ class HardwareController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return View
      */
-    public function index()
+    public function index(): View
     {
         return view('hardware.index');
     }
@@ -42,9 +49,9 @@ class HardwareController extends Controller
      * Show the form for creating a new resource.
      *
      * @param FormBuilder $formBuilder
-     * @return \Illuminate\Http\Response
+     * @return View
      */
-    public function create(FormBuilder $formBuilder)
+    public function create(FormBuilder $formBuilder): View
     {
         $form = $formBuilder->create(HardwareForm::class, [
            'method' => 'POST',
@@ -57,10 +64,10 @@ class HardwareController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param FormBuilder $formBuilder
+     * @return RedirectResponse
      */
-    public function store(FormBuilder $formBuilder)
+    public function store(FormBuilder $formBuilder): RedirectResponse
     {
         $form = $formBuilder->create(HardwareForm::class);
 
@@ -70,6 +77,8 @@ class HardwareController extends Controller
         }
 
         $attributes = $form->getFieldValues();
+
+        // TODO check if unit exists if rack selected
 
         $hardware = Hardware::create($attributes);
 
@@ -110,9 +119,9 @@ class HardwareController extends Controller
      * Display the specified resource.
      *
      * @param Hardware $hardware
-     * @return \Illuminate\Http\Response
+     * @return View
      */
-    public function show(Hardware $hardware)
+    public function show(Hardware $hardware): View
     {
         return view('hardware.show', compact('hardware'));
     }
@@ -122,9 +131,9 @@ class HardwareController extends Controller
      *
      * @param Hardware $hardware
      * @param FormBuilder $formBuilder
-     * @return \Illuminate\Http\Response
+     * @return View
      */
-    public function edit(Hardware $hardware, FormBuilder $formBuilder)
+    public function edit(Hardware $hardware, FormBuilder $formBuilder): View
     {
         $form = $formBuilder->create(HardwareForm::class, [
             'method' => 'PUT',
@@ -140,9 +149,9 @@ class HardwareController extends Controller
      *
      * @param FormBuilder $formBuilder
      * @param Hardware $hardware
-     * @return \Illuminate\Http\Response
+     * @return RedirectResponse
      */
-    public function update(FormBuilder $formBuilder, Hardware $hardware)
+    public function update(FormBuilder $formBuilder, Hardware $hardware): RedirectResponse
     {
         $form = $formBuilder->create(HardwareForm::class);
 
@@ -152,6 +161,8 @@ class HardwareController extends Controller
         }
 
         $attributes = $form->getFieldValues();
+
+        // TODO check if unit exists if rack selected
 
         $hardware->update($attributes);
 
