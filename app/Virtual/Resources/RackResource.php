@@ -4,14 +4,14 @@ namespace App\Virtual\Resources;
 
 /**
 * @OA\Schema(
-*     title="Row Resource",
-*     description="Row resource",
+*     title="Rack Resource",
+*     description="Rack resource",
 *     @OA\Xml(
-*         name="Row Resource"
+*         name="Rack Resource"
 *     )
 * )
 */
-class RowResource
+class RackResource
 {
 /**
 * @OA\Property(
@@ -19,7 +19,7 @@ class RowResource
 *     description="Data wrapper"
 * )
 *
-* @var \App\Virtual\Models\Row[]
+* @var \App\Virtual\Models\Rack[]
 */
 private $data;
 }

@@ -185,6 +185,172 @@
                 }
             }
         },
+        "/racks": {
+            "get": {
+                "tags": [
+                    "Racks"
+                ],
+                "summary": "Get list of racks",
+                "description": "Returns list of all racks",
+                "operationId": "getRacksList",
+                "responses": {
+                    "200": {
+                        "description": "Succesful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/RackResource"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Racks"
+                ],
+                "summary": "Store new rack",
+                "description": "Returns rack data",
+                "operationId": "storeRack",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/StoreRackRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Rack"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error422"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/racks/{id}": {
+            "get": {
+                "tags": [
+                    "Racks"
+                ],
+                "summary": "Get rack information",
+                "description": "Returns rack data",
+                "operationId": "getRackById",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Rack id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Rack"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Resource Not Found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error404"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Racks"
+                ],
+                "summary": "Update existing rack",
+                "description": "Returns updated rack data",
+                "operationId": "updateRack",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Rack id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UpdateRackRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Rack"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Resource Not Found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error404"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error422"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
         "/rows": {
             "get": {
                 "tags": [
@@ -254,7 +420,7 @@
                 ],
                 "summary": "Get row information",
                 "description": "Returns row data",
-                "operationId": "getrowById",
+                "operationId": "getRowById",
                 "parameters": [
                     {
                         "name": "id",
@@ -423,6 +589,57 @@
                     "name": "Location"
                 }
             },
+            "Rack": {
+                "title": "Rack",
+                "description": "Rack model",
+                "properties": {
+                    "id": {
+                        "title": "ID",
+                        "description": "ID",
+                        "type": "integer",
+                        "format": "int64",
+                        "example": 1
+                    },
+                    "name": {
+                        "title": "Name",
+                        "description": "The name of the Rack",
+                        "type": "string",
+                        "example": "Rack 1"
+                    },
+                    "height": {
+                        "title": "Height",
+                        "description": "The height of the Rack",
+                        "type": "integer",
+                        "format": "int64",
+                        "example": 48
+                    },
+                    "location_id": {
+                        "title": "Row ID",
+                        "description": "The ID of the Row",
+                        "type": "integer",
+                        "format": "int64",
+                        "example": 1
+                    },
+                    "created_at": {
+                        "title": "Created at",
+                        "description": "Created at",
+                        "type": "string",
+                        "format": "datetime",
+                        "example": "2020-01-27 17:50:45"
+                    },
+                    "updated_at": {
+                        "title": "Updated at",
+                        "description": "Updated at",
+                        "type": "string",
+                        "format": "datetime",
+                        "example": "2020-01-27 17:50:45"
+                    }
+                },
+                "type": "object",
+                "xml": {
+                    "name": "Rack"
+                }
+            },
             "Row": {
                 "title": "Row",
                 "description": "Row model",
@@ -485,8 +702,26 @@
                     "name": "Location Resource"
                 }
             },
+            "RackResource": {
+                "title": "Rack Resource",
+                "description": "Rack resource",
+                "properties": {
+                    "data": {
+                        "title": "Data",
+                        "description": "Data wrapper",
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/Rack"
+                        }
+                    }
+                },
+                "type": "object",
+                "xml": {
+                    "name": "Rack Resource"
+                }
+            },
             "RowResource": {
-                "title": "row Resource",
+                "title": "Row Resource",
                 "description": "Row resource",
                 "properties": {
                     "data": {
@@ -519,6 +754,34 @@
                 },
                 "type": "object"
             },
+            "StoreRackRequest": {
+                "title": "Store Rack Request",
+                "description": "Store Rack request body data",
+                "required": [
+                    "row_id"
+                ],
+                "properties": {
+                    "name": {
+                        "title": "name",
+                        "description": "Name of the new rack",
+                        "type": "string",
+                        "example": "Rack 1"
+                    },
+                    "height": {
+                        "title": "height",
+                        "description": "Height of the Rack",
+                        "type": "integer",
+                        "example": "48"
+                    },
+                    "row_id": {
+                        "title": "row_id",
+                        "description": "ID of the Row",
+                        "type": "integer",
+                        "example": "1"
+                    }
+                },
+                "type": "object"
+            },
             "StoreRowRequest": {
                 "title": "Store Row Request",
                 "description": "Store Row request body data",
@@ -534,7 +797,7 @@
                     },
                     "location_id": {
                         "title": "location_id",
-                        "description": "ID of the location",
+                        "description": "ID of the Location",
                         "type": "integer",
                         "example": "1"
                     }
@@ -553,6 +816,34 @@
                         "description": "New name of the location",
                         "type": "string",
                         "example": "Location 1"
+                    }
+                },
+                "type": "object"
+            },
+            "UpdateRackRequest": {
+                "title": "Update Rack Request",
+                "description": "Update Rack request body data",
+                "required": [
+                    "row_id"
+                ],
+                "properties": {
+                    "name": {
+                        "title": "name",
+                        "description": "New name of the Rack",
+                        "type": "string",
+                        "example": "Rack 1"
+                    },
+                    "height": {
+                        "title": "height",
+                        "description": "Height of the Rack",
+                        "type": "integer",
+                        "example": "48"
+                    },
+                    "row_id": {
+                        "title": "row_id",
+                        "description": "New row_id of the Rack",
+                        "type": "integer",
+                        "example": "1"
                     }
                 },
                 "type": "object"
@@ -589,6 +880,10 @@
         {
             "name": "Rows",
             "description": "API Endpoints of Rows"
+        },
+        {
+            "name": "Racks",
+            "description": "API Endpoints of Racks"
         }
     ],
     "security": [

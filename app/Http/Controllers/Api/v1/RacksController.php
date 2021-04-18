@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers\Api\V1;
 
-use App\Models\Row;
+use App\Models\Rack;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
-class RowsController extends Controller
+class RacksController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,24 +14,24 @@ class RowsController extends Controller
      * @return JsonResponse
      *
      * @OA\Get(
-     *     path="/rows",
-     *     operationId="getRowsList",
-     *     tags={"Rows"},
-     *     summary="Get list of rows",
-     *     description="Returns list of all rows",
+     *     path="/racks",
+     *     operationId="getRacksList",
+     *     tags={"Racks"},
+     *     summary="Get list of racks",
+     *     description="Returns list of all racks",
      *     @OA\Response(
      *          response=200,
      *          description="Succesful operation",
-     *          @OA\JsonContent(ref="#/components/schemas/RowResource")
+     *          @OA\JsonContent(ref="#/components/schemas/RackResource")
      *      )
      *     )
      */
     public function index(): JsonResponse
     {
-        $rows = Row::all();
+        $rack = Rack::all();
 
         return response()->json([
-            'data' => $rows
+            'data' => $rack
         ]);
     }
 
@@ -42,19 +42,19 @@ class RowsController extends Controller
      * @return JsonResponse
      *
      * @OA\Post(
-     *     path="/rows",
-     *     operationId="storeRow",
-     *     tags={"Rows"},
-     *     summary="Store new row",
-     *     description="Returns row data",
+     *     path="/racks",
+     *     operationId="storeRack",
+     *     tags={"Racks"},
+     *     summary="Store new rack",
+     *     description="Returns rack data",
      *     @OA\RequestBody(
      *          required=true,
-     *          @OA\JsonContent(ref="#/components/schemas/StoreRowRequest")
+     *          @OA\JsonContent(ref="#/components/schemas/StoreRackRequest")
      *      ),
      *     @OA\Response(
      *          response=201,
      *          description="Successful operation",
-     *          @OA\JsonContent(ref="#/components/schemas/Row")
+     *          @OA\JsonContent(ref="#/components/schemas/Rack")
      *       ),
      *     @OA\Response(
      *          response=422,
@@ -68,29 +68,30 @@ class RowsController extends Controller
     {
         $request->validate([
             'name'        => 'required',
-            'location_id' => 'required',
+            'height'      => 'required',
+            'row_id'      => 'required',
         ]);
 
-        $row = Row::create($request->all());
+        $rack = Rack::create($request->all());
 
-        return response()->json($row, 201);
+        return response()->json($rack, 201);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param Row $row
+     * @param Rack $rack
      * @return JsonResponse
      *
      * @OA\Get(
-     *      path="/rows/{id}",
-     *      operationId="getRowById",
-     *      tags={"Rows"},
-     *      summary="Get row information",
-     *      description="Returns row data",
+     *      path="/racks/{id}",
+     *      operationId="getRackById",
+     *      tags={"Racks"},
+     *      summary="Get rack information",
+     *      description="Returns rack data",
      *      @OA\Parameter(
      *          name="id",
-     *          description="Row id",
+     *          description="Rack id",
      *          required=true,
      *          in="path",
      *          @OA\Schema(
@@ -100,7 +101,7 @@ class RowsController extends Controller
      *      @OA\Response(
      *          response=200,
      *          description="Successful operation",
-     *          @OA\JsonContent(ref="#/components/schemas/Row")
+     *          @OA\JsonContent(ref="#/components/schemas/Rack")
      *       ),
      *      @OA\Response(
      *          response=404,
@@ -109,27 +110,27 @@ class RowsController extends Controller
      *      )
      * )
      */
-    public function show(Row $row): JsonResponse
+    public function show(Rack $rack): JsonResponse
     {
-        return response()->json($row);
+        return response()->json($rack);
     }
 
     /**
      * Update the specified resource.
      *
      * @param Request $request
-     * @param Row $row
+     * @param Rack $rack
      * @return JsonResponse
      *
      * @OA\Put(
-     *      path="/rows/{id}",
-     *      operationId="updateRow",
-     *      tags={"Rows"},
-     *      summary="Update existing rows",
-     *      description="Returns updated rows data",
+     *      path="/racks/{id}",
+     *      operationId="updateRack",
+     *      tags={"Racks"},
+     *      summary="Update existing rack",
+     *      description="Returns updated rack data",
      *      @OA\Parameter(
      *          name="id",
-     *          description="Row id",
+     *          description="Rack id",
      *          required=true,
      *          in="path",
      *          @OA\Schema(
@@ -138,12 +139,12 @@ class RowsController extends Controller
      *      ),
      *      @OA\RequestBody(
      *          required=true,
-     *          @OA\JsonContent(ref="#/components/schemas/UpdateRowRequest")
+     *          @OA\JsonContent(ref="#/components/schemas/UpdateRackRequest")
      *      ),
      *      @OA\Response(
      *          response=201,
      *          description="Successful operation",
-     *          @OA\JsonContent(ref="#/components/schemas/Row")
+     *          @OA\JsonContent(ref="#/components/schemas/Rack")
      *       ),
      *      @OA\Response(
      *          response=404,
@@ -157,15 +158,15 @@ class RowsController extends Controller
      *      ),
      * )
      */
-    public function update(Request $request, Row $row): JsonResponse
+    public function update(Request $request, Rack $rack): JsonResponse
     {
 //        $request->validate([
 //            'name' => 'required',
 //        ]);
 
-        $row->update($request->all());
+        $rack->update($request->all());
 
-        return response()->json($row, 201);
+        return response()->json($rack, 201);
     }
 
 }

@@ -28,7 +28,7 @@ class StoreRowRequest
     /**
      * @OA\Property(
      *      title="location_id",
-     *      description="ID of the location",
+     *      description="ID of the Location",
      *      example="1"
      * )
      *

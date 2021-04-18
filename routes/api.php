@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\V1\LocationsController;
+use App\Http\Controllers\Api\V1\RacksController;
 use App\Http\Controllers\Api\V1\RowsController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -29,6 +30,7 @@ Route::group([
     Route::apiResources([
         'locations' => LocationsController::class,
         'rows' => RowsController::class,
+        'racks' => RacksController::class,
     ]);
 });
 
