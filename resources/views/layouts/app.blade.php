@@ -174,6 +174,14 @@
 {{--                                <p>@lang('app.hardware_templates')</p>--}}
 {{--                            </a>--}}
 {{--                        </li>--}}
+
+                        <li class="nav-header">@lang('app.api')</li>
+                        <li class="nav-item">
+                            <a href="{{ route('l5-swagger.default.api') }}" target="_blank" class="nav-link">
+                                <i class="nav-icon fas fa-server"></i>
+                                <p>@lang('app.documentation')</p>
+                            </a>
+                        </li>
                     </ul>
                 </nav>
             </div>

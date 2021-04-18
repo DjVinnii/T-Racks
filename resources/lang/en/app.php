@@ -48,6 +48,8 @@ return [
     'rows' => 'Rows',
     'row' => 'Row',
     'remote_port' => 'Remote Port',
+    'api' => 'API',
+    'documentation' => 'Documentation',
 
     // Auth
     'login'                    => 'Login',
