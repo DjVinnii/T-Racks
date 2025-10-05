@@ -15,6 +15,10 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('locations', function () {
         return Inertia::render('Locations/Index');
     })->name('locations.index');
+
+    Route::get('racks', function () {
+        return Inertia::render('Racks/Index');
+    })->name('racks.index');
 });
 
 require __DIR__.'/settings.php';

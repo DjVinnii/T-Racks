@@ -45,7 +45,18 @@ export interface User {
 export interface Location {
     id: string;
     name: string;
-    created_at?: string;
-    updated_at?: string;
+    created_at: string;
+    updated_at: string;
+    [key: string]: unknown;
+}
+
+export interface Rack {
+    id: string;
+    location_id: string | null;
+    location?: Location | null;
+    name: string;
+    notes: string | null;
+    created_at: string;
+    updated_at: string;
     [key: string]: unknown;
 }

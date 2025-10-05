@@ -11,7 +11,8 @@ import {
     SidebarMenuItem,
 } from '@/components/ui/sidebar';
 import { dashboard } from '@/routes';
-import { index } from '@/routes/locations';
+import { index as LocationsIndex } from '@/routes/locations';
+import { index as RacksIndex } from '@/routes/racks';
 import { type NavItem } from '@/types';
 import { Link } from '@inertiajs/react';
 import { BookOpen, Folder, LayoutGrid } from 'lucide-react';
@@ -25,7 +26,12 @@ const mainNavItems: NavItem[] = [
     },
     {
         title: 'Locations',
-        href: index(),
+        href: LocationsIndex(),
+        icon: Folder,
+    },
+    {
+        title: 'Racks',
+        href: RacksIndex(),
         icon: Folder,
     },
 ];
