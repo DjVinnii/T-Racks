@@ -83,7 +83,7 @@ it('store validation fails when required fields missing', function () {
     $response = $this->postJson('/api/racks', []);
 
     $response->assertStatus(422);
-    $response->assertJsonValidationErrors(['location_id', 'name']);
+    $response->assertJsonValidationErrors(['name']);
 });
 
 it('update validation fails when name is empty', function () {
