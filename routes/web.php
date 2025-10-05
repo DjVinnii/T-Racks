@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\LocationPageController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -12,9 +13,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
         return Inertia::render('dashboard');
     })->name('dashboard');
     
-    Route::get('locations', function () {
-        return Inertia::render('Locations/Index');
-    })->name('locations.index');
+    Route::resource('locations', LocationPageController::class)->only(['index', 'show']);
 
     Route::get('racks', function () {
         return Inertia::render('Racks/Index');
