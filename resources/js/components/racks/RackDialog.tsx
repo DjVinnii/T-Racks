@@ -1,17 +1,24 @@
-import React, { useEffect, useState } from 'react';
+import { Button } from '@/components/ui/button';
 import {
     Dialog,
+    DialogClose,
     DialogContent,
-    DialogHeader,
-    DialogTitle,
     DialogDescription,
     DialogFooter,
-    DialogClose,
+    DialogHeader,
+    DialogTitle,
 } from '@/components/ui/dialog';
 import { Input } from '@/components/ui/input';
-import { Button } from '@/components/ui/button';
-import { Select, SelectTrigger, SelectContent, SelectItem, SelectValue } from '@/components/ui/select';
+import { Label } from '@/components/ui/label';
+import {
+    Select,
+    SelectContent,
+    SelectItem,
+    SelectTrigger,
+    SelectValue,
+} from '@/components/ui/select';
 import { type Location } from '@/types';
+import { useEffect, useState } from 'react';
 
 type Props = {
     open: boolean;
@@ -43,7 +50,9 @@ export default function RackDialog({
     locations = [],
 }: Props) {
     const [name, setName] = useState(initialName);
-    const [locationId, setLocationId] = useState<string | null>(initialLocation ?? null);
+    const [locationId, setLocationId] = useState<string | null>(
+        initialLocation ?? null,
+    );
 
     useEffect(() => {
         setName(initialName ?? '');
@@ -62,18 +71,44 @@ export default function RackDialog({
             <DialogContent>
                 <DialogHeader>
                     <DialogTitle>{title}</DialogTitle>
-                    {description && <DialogDescription>{description}</DialogDescription>}
+                    {description && (
+                        <DialogDescription>{description}</DialogDescription>
+                    )}
                 </DialogHeader>
 
                 <div className="mt-4">
-                    <label className="block text-sm font-medium mb-1">Name</label>
-                    <Input value={name} onChange={(e) => setName(e.currentTarget.value)} />
-                    {errors?.name && <div className="text-sm text-destructive mt-2">{errors.name[0]}</div>}
+                    <Label
+                        htmlFor="name"
+                        className="mb-1 block text-sm font-medium"
+                    >
+                        Name
+                    </Label>
+                    <Input
+                        id="name"
+                        value={name}
+                        onChange={(e) => setName(e.currentTarget.value)}
+                    />
+                    {errors?.name && (
+                        <div className="mt-2 text-sm text-destructive">
+                            {errors.name[0]}
+                        </div>
+                    )}
                 </div>
 
                 <div className="mt-4">
-                    <label className="block text-sm font-medium mb-1">Location</label>
-                                    <Select value={locationId ?? ''} onValueChange={(val: string) => setLocationId(val === '__none' ? null : (val || null))}>
+                    <Label
+                        htmlFor="location"
+                        className="mb-1 block text-sm font-medium"
+                    >
+                        Location
+                    </Label>
+                    <Select
+                        id="location"
+                        value={locationId ?? ''}
+                        onValueChange={(val: string) =>
+                            setLocationId(val === '__none' ? null : val || null)
+                        }
+                    >
                         <SelectTrigger>
                             <SelectValue placeholder="Select a location" />
                         </SelectTrigger>
@@ -82,7 +117,9 @@ export default function RackDialog({
                             {/* allow an explicit empty selection to make location optional; use a sentinel value (not empty string) */}
                             <SelectItem value="__none">No location</SelectItem>
                             {locations.map((loc) => (
-                                <SelectItem key={loc.id} value={loc.id}>{loc.name}</SelectItem>
+                                <SelectItem key={loc.id} value={loc.id}>
+                                    {loc.name}
+                                </SelectItem>
                             ))}
                         </SelectContent>
                     </Select>
@@ -90,9 +127,18 @@ export default function RackDialog({
 
                 <DialogFooter>
                     <DialogClose asChild>
-                        <Button variant="outline" onClick={handleCancel}>Cancel</Button>
+                        <Button variant="outline" onClick={handleCancel}>
+                            Cancel
+                        </Button>
                     </DialogClose>
-                    <Button onClick={() => onSubmit({ name, location_id: locationId ?? null })} disabled={loading}>{submitLabel}</Button>
+                    <Button
+                        onClick={() =>
+                            onSubmit({ name, location_id: locationId ?? null })
+                        }
+                        disabled={loading}
+                    >
+                        {submitLabel}
+                    </Button>
                 </DialogFooter>
             </DialogContent>
         </Dialog>

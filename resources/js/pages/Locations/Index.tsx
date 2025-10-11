@@ -244,6 +244,12 @@ export default function LocationsIndex() {
                         <Button type="submit">Search</Button>
                     </form>
 
+                    <div className="ml-2">
+                        <Button onClick={() => setCreateOpen(true)}>
+                            Create
+                        </Button>
+                    </div>
+
                     <LocationDialog
                         open={createOpen}
                         onOpenChange={(open) => {

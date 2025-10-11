@@ -1,15 +1,16 @@
-import React, { useEffect, useState } from 'react';
+import { Button } from '@/components/ui/button';
 import {
     Dialog,
+    DialogClose,
     DialogContent,
-    DialogHeader,
-    DialogTitle,
     DialogDescription,
     DialogFooter,
-    DialogClose,
+    DialogHeader,
+    DialogTitle,
 } from '@/components/ui/dialog';
 import { Input } from '@/components/ui/input';
-import { Button } from '@/components/ui/button';
+import { Label } from '@/components/ui/label';
+import { useEffect, useState } from 'react';
 
 type Props = {
     open: boolean;
@@ -53,20 +54,34 @@ export default function LocationDialog({
             <DialogContent>
                 <DialogHeader>
                     <DialogTitle>{title}</DialogTitle>
-                    {description && <DialogDescription>{description}</DialogDescription>}
+                    {description && (
+                        <DialogDescription>{description}</DialogDescription>
+                    )}
                 </DialogHeader>
 
-                <div className="mt-4">
-                    <label className="block text-sm font-medium mb-1">Name</label>
-                    <Input value={name} onChange={(e) => setName(e.currentTarget.value)} />
-                    {errors?.name && <div className="text-sm text-destructive mt-2">{errors.name[0]}</div>}
+                <div className="mt-4 grid items-center gap-3">
+                    <Label htmlFor="name">Name</Label>
+                    <Input
+                        id="name"
+                        value={name}
+                        onChange={(e) => setName(e.currentTarget.value)}
+                    />
+                    {errors?.name && (
+                        <div className="mt-2 text-sm text-destructive">
+                            {errors.name[0]}
+                        </div>
+                    )}
                 </div>
 
                 <DialogFooter>
                     <DialogClose asChild>
-                        <Button variant="outline" onClick={handleCancel}>Cancel</Button>
+                        <Button variant="outline" onClick={handleCancel}>
+                            Cancel
+                        </Button>
                     </DialogClose>
-                    <Button onClick={() => onSubmit(name)} disabled={loading}>{submitLabel}</Button>
+                    <Button onClick={() => onSubmit(name)} disabled={loading}>
+                        {submitLabel}
+                    </Button>
                 </DialogFooter>
             </DialogContent>
         </Dialog>
