@@ -13,7 +13,7 @@ class CreateRacksTable extends Migration
     {
         Schema::create('racks', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->foreignUuid('location_id')->nullable()->constrained('locations')->cascadeOnDelete();
+            $table->foreignUuid('location_id')->nullable()->constrained('locations');
             $table->string('name');
             $table->text('notes')->nullable();
             $table->timestamps();

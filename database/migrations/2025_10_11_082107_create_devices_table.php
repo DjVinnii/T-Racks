@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('devices', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->string('name');
-            $table->foreignUuid('rack_id')->nullable()->constrained('racks')->cascadeOnDelete();
+            $table->foreignUuid('rack_id')->nullable()->constrained('racks');
             $table->timestamps();
         });
     }
