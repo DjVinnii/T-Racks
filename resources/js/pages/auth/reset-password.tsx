@@ -1,12 +1,12 @@
 import NewPasswordController from '@/actions/App/Http/Controllers/Auth/NewPasswordController';
 import { Form, Head } from '@inertiajs/react';
-import { LoaderCircle } from 'lucide-react';
 
 import InputError from '@/components/input-error';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import AuthLayout from '@/layouts/auth-layout';
+import { Spinner } from '@/components/ui/spinner';
 
 interface ResetPasswordProps {
     token: string;
@@ -83,9 +83,7 @@ export default function ResetPassword({ token, email }: ResetPasswordProps) {
                             disabled={processing}
                             data-test="reset-password-button"
                         >
-                            {processing && (
-                                <LoaderCircle className="h-4 w-4 animate-spin" />
-                            )}
+                            {processing && <Spinner />}
                             Reset password
                         </Button>
                     </div>
