@@ -18,6 +18,10 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('racks', function () {
         return Inertia::render('Racks/Index');
     })->name('racks.index');
+
+    Route::get('devices', function () {
+        return Inertia::render('Devices/Index');
+    })->name('devices.index');
 });
 
 require __DIR__.'/settings.php';

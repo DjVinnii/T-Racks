@@ -60,3 +60,13 @@ export interface Rack {
     updated_at: string;
     [key: string]: unknown;
 }
+
+export interface Device {
+    id: string;
+    rack_id: string | null;
+    rack?: Rack | null;
+    name: string;
+    created_at: string;
+    updated_at: string;
+    [key: string]: unknown;
+}

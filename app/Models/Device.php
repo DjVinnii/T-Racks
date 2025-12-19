@@ -6,24 +6,17 @@ use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class Rack extends Model
+class Device extends Model
 {
     use HasUuids, HasFactory;
 
     protected $fillable = [
         'name',
-        'notes',
     ];
 
-    public function location(): BelongsTo
+    public function rack(): BelongsTo
     {
-        return $this->belongsTo(Location::class);
-    }
-
-    public function devices(): HasMany
-    {
-        return $this->hasMany(Device::class);
+        return $this->belongsTo(Rack::class);
     }
 }
