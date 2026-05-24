@@ -10,10 +10,9 @@ import {
     DialogTitle,
 } from '@/components/ui/dialog';
 import { Input } from '@/components/ui/input';
-import AppLayout from '@/layouts/app-layout';
 import LocationApiRoutes from '@/routes/api/locations';
 import LocationRoutes from '@/routes/locations';
-import { type BreadcrumbItem, type Location } from '@/types';
+import { type Location } from '@/types';
 import { Head, Link } from '@inertiajs/react';
 import {
     keepPreviousData,
@@ -24,10 +23,6 @@ import {
 import axios from 'axios';
 import { useState } from 'react';
 import { toast } from 'sonner';
-
-const breadcrumbs: BreadcrumbItem[] = [
-    { title: 'Locations', href: LocationRoutes.index.url() },
-];
 
 export default function LocationsIndex() {
     const [query, setQuery] = useState('');
@@ -230,7 +225,7 @@ export default function LocationsIndex() {
     const loading = listQuery.isLoading || listQuery.isFetching;
 
     return (
-        <AppLayout breadcrumbs={breadcrumbs}>
+        <>
             <Head title="Locations" />
 
             <div className="p-4">
@@ -448,6 +443,15 @@ export default function LocationsIndex() {
                     </div>
                 )}
             </div>
-        </AppLayout>
+        </>
     );
 }
+
+LocationsIndex.layout = {
+    breadcrumbs: [
+        {
+            title: 'Locations',
+            href: LocationRoutes.index(),
+        },
+    ],
+};
