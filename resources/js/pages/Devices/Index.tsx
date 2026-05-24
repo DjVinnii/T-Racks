@@ -1,10 +1,10 @@
 import DeviceDialog from '@/components/devices/DeviceDialog';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import AppLayout from '@/layouts/app-layout';
 import DeviceApiRoutes from '@/routes/api/devices';
 import RackApiRoutes from '@/routes/api/racks';
-import { type BreadcrumbItem, type Device, type Rack } from '@/types';
+import DeviceRoutes from '@/routes/devices';
+import { type Device, type Rack } from '@/types';
 import { Head } from '@inertiajs/react';
 import {
     keepPreviousData,
@@ -15,8 +15,6 @@ import {
 import axios from 'axios';
 import { useState } from 'react';
 import { toast } from 'sonner';
-
-const breadcrumbs: BreadcrumbItem[] = [{ title: 'Devices', href: '/devices' }];
 
 export default function DevicesIndex() {
     const [query, setQuery] = useState('');
@@ -238,7 +236,7 @@ export default function DevicesIndex() {
     const loading = listQuery.isLoading || listQuery.isFetching;
 
     return (
-        <AppLayout breadcrumbs={breadcrumbs}>
+        <>
             <Head title="Devices" />
 
             <div className="p-4">
@@ -377,6 +375,15 @@ export default function DevicesIndex() {
                     </div>
                 )}
             </div>
-        </AppLayout>
+        </>
     );
 }
+
+DevicesIndex.layout = {
+    breadcrumbs: [
+        {
+            title: 'Devices',
+            href: DeviceRoutes.index(),
+        },
+    ],
+};

@@ -1,17 +1,11 @@
 import { Button } from '@/components/ui/button';
-import AppLayout from '@/layouts/app-layout';
 import LocationApiRoutes from '@/routes/api/locations';
 import RackApiRoutes from '@/routes/api/racks';
 import LocationRoutes from '@/routes/locations';
-import { type BreadcrumbItem, type Location, type Rack } from '@/types';
+import { type Location, type Rack } from '@/types';
 import { Head } from '@inertiajs/react';
 import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
-
-const breadcrumbs: BreadcrumbItem[] = [
-    { title: 'Locations', href: LocationRoutes.index.url() },
-    { title: 'Location', href: '#' },
-];
 
 export default function LocationShow({ location }: { location: string }) {
     const { data, isLoading } = useQuery({
@@ -45,7 +39,7 @@ export default function LocationShow({ location }: { location: string }) {
     const racks = racksQuery.data ?? ([] as Rack[]);
 
     return (
-        <AppLayout breadcrumbs={breadcrumbs}>
+        <>
             <Head title={`Location: ${details?.name ?? 'Loading...'}`} />
 
             <div className="p-4">
@@ -87,6 +81,15 @@ export default function LocationShow({ location }: { location: string }) {
                     </div>
                 </div>
             </div>
-        </AppLayout>
+        </>
     );
 }
+
+LocationShow.layout = {
+    breadcrumbs: [
+        {
+            title: 'Locations',
+            href: LocationRoutes.index(),
+        },
+    ],
+};
